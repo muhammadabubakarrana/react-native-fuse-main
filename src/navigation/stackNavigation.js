@@ -10,6 +10,7 @@ import {
   Settings,
   ProfileScreen,
   TeamForFuser,
+  GettingFusedDater,
 } from '../screens/appFlow';
 import {routes} from '../services';
 
@@ -80,7 +81,7 @@ const SparkStackNavigator = () => {
         gestureEnabled: false,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
-      <Stack.Screen name="SparkStack" component={Spark} />
+      <Stack.Screen name="SparkStack" component={GettingFusedDater} />
     </Stack.Navigator>
   );
 };

@@ -44,13 +44,11 @@ const PromptsSwitch = () => {
         renderItem={({item}) => {
           return (
             <Wrapper
-              paddingHorizontalSmall
+              paddingHorizontalBase
               paddingVerticalBase
               marginVerticalSmall
               isCardView>
-              <Text
-                isRegularFont
-                style={{...styles.title, marginBottom: height(1)}}>
+              <Text isMedium style={{...styles.title, marginBottom: height(1)}}>
                 {item.title}
               </Text>
               <Text style={styles.title} isLarge>
@@ -62,7 +60,7 @@ const PromptsSwitch = () => {
       />
 
       <Wrapper
-        paddingVerticalSmall
+        paddingVerticalBase
         paddingHorizontalSmall
         marginVerticalSmall
         isCardView>
@@ -140,6 +138,9 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: 'white',
     textAlign: 'center',
+  },
+  title: {
+    color: colors.black,
   },
 });
 

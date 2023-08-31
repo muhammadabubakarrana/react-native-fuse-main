@@ -13,8 +13,9 @@ import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {SvgIcons} from '../../../services/constants/svg';
 import {height, totalSize} from 'react-native-dimension';
 import {useNavigation} from '@react-navigation/native';
-import {sizes} from '../../../services';
+import {baseStyle, sizes} from '../../../services';
 import Carousel from 'react-native-snap-carousel';
+import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 
 const dropdownData = [
   {id: '2', name: 'Inbox'},
@@ -28,6 +29,10 @@ function Chat() {
   const navigation = useNavigation();
   const [dropdownActive, setDropdownActive] = useState(false);
   const [chatType, setChatType] = useState(dropdownData[0]?.name);
+  const [isMenuVisible, setMenuVisible] = useState(false);
+
+  const hideMenu = () => setMenuVisible(false);
+  const showMenu = () => setMenuVisible(true);
 
   return (
     <Wrapper isMain>
@@ -226,14 +231,35 @@ function Chat() {
                   </View>
                 </View>
               </View>
-              <View
+              <TouchableOpacity
+                onPress={showMenu}
                 style={{
                   flex: 0.2,
-                  justifyContent: 'flex-start',
                   alignItems: 'flex-end',
                 }}>
                 <SvgIcons.DotIconHorizontal />
-              </View>
+              </TouchableOpacity>
+              {
+                <Menu
+                  style={{
+                    width: 'auto',
+                    paddingHorizontal: baseStyle.paddingHorizontal(5),
+                    paddingVertical: baseStyle.paddingVertical(5),
+                  }}
+                  visible={isMenuVisible}
+                  onRequestClose={hideMenu}>
+                  <MenuItem onPress={hideMenu}>
+                    <Text isMedium isTextColor2>
+                      Delete
+                    </Text>
+                  </MenuItem>
+                  <MenuItem onPress={hideMenu}>
+                    <Text isMedium isTextColor2>
+                      Report
+                    </Text>
+                  </MenuItem>
+                </Menu>
+              }
             </Wrapper>
           </TouchableOpacity>
           <TouchableOpacity
@@ -298,14 +324,13 @@ function Chat() {
                   </View>
                 </View>
               </View>
-              <View
+              <TouchableOpacity
                 style={{
                   flex: 0.2,
-                  justifyContent: 'flex-start',
                   alignItems: 'flex-end',
                 }}>
                 <SvgIcons.DotIconHorizontal />
-              </View>
+              </TouchableOpacity>
             </Wrapper>
           </TouchableOpacity>
           <TouchableOpacity
@@ -374,14 +399,13 @@ function Chat() {
                   </View>
                 </View>
               </View>
-              <View
+              <TouchableOpacity
                 style={{
                   flex: 0.2,
-                  justifyContent: 'flex-start',
                   alignItems: 'flex-end',
                 }}>
                 <SvgIcons.DotIconHorizontal />
-              </View>
+              </TouchableOpacity>
             </Wrapper>
           </TouchableOpacity>
           <TouchableOpacity
@@ -452,14 +476,13 @@ function Chat() {
                   </View>
                 </View>
               </View>
-              <View
+              <TouchableOpacity
                 style={{
                   flex: 0.2,
-                  justifyContent: 'flex-start',
                   alignItems: 'flex-end',
                 }}>
                 <SvgIcons.DotIconHorizontal />
-              </View>
+              </TouchableOpacity>
             </Wrapper>
           </TouchableOpacity>
           <Spacer isDoubleBase />

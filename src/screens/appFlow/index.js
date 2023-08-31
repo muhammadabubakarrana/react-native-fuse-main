@@ -9,7 +9,7 @@ import CaptainsPage from './profile/captainsPage';
 import TeamForFuser from './profile/TeamForFuser';
 import Settings from './profile/settings';
 import ProfileScreen from './profile/ProfileScreen';
-
+import GettingFusedDater from './scroll/gettingFusedDater';
 
 export {
   ProfileHome,
@@ -23,4 +23,5 @@ export {
   TeamForFuser,
   Settings,
   ProfileScreen,
+  GettingFusedDater,
 };

@@ -496,6 +496,9 @@ export const appStyles = StyleSheet.create({
   justifyContentFlexend: {
     justifyContent: 'flex-end',
   },
+  justifyContentFlexend: {
+    justifyContent: 'space-arround',
+  },
   justifyContentFlexstart: {
     justifyContent: 'flex-start',
   },

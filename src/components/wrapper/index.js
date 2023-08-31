@@ -14,6 +14,7 @@ export default ({
     justifyContentFlexend,
     justifyContentFlexstart,
     justifyContentSpaceEvenly,
+    justifyContentSpaceArround,
     //alignItems
     alignItemsCenter,
     alignItemsFlexEnd,
@@ -122,6 +123,7 @@ export default ({
                 justifyContentFlexend && appStyles.justifyContentFlexend,
                 justifyContentFlexstart && appStyles.justifyContentFlexstart,
                 justifyContentSpaceEvenly && appStyles.justifyContentSpaceEvenly,
+                justifyContentSpaceArround && appStyles.justifyContentSpaceArround ,
                 //align Items
                 alignItemsCenter && appStyles.alignItemsCenter,
                 alignItemsFlexEnd && appStyles.alignItemsFlexEnd,

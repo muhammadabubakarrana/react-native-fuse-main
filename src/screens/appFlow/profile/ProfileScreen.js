@@ -9,6 +9,7 @@ import {
   PhotosSwitch,
   PromptsSwitch,
   ScrollViews,
+  CustomStatusBar,
 } from '../../../components';
 import {
   Image,
@@ -40,7 +41,7 @@ const ProfileScreen = () => {
 
   return (
     <Wrapper isMain style={{flex: 1, backgroundColor: colors.appBgColor9}}>
-      <Spacer isStatusBarHeigt />
+      <CustomStatusBar barStyle={'dark'} backgroundColor={'#FFFFFF'} />
       <StatusBars.Dark />
       <ScrollViews.KeyboardAvoiding>
         <View style={{position: 'relative', alignItems: 'center'}}>
@@ -95,10 +96,11 @@ const ProfileScreen = () => {
         <Spacer isBasic />
         {/* Profile Name */}
         <Wrapper marginHorizontalBase marginVerticalBase>
-          <Text style={{color: colors.black}} isTinyTitle alignTextCenter>
+          <Text isTinyTitle style={{color: colors.black}} alignTextCenter>
             Amy Willison
           </Text>
         </Wrapper>
+        <Spacer isTiny />
         {/* Selector Switch */}
         <Wrapper marginHorizontalBase>
           <SwitchSelector

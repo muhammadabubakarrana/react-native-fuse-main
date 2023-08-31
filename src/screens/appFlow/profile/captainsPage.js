@@ -10,12 +10,14 @@ import {
   Buttons,
 } from '../../../components';
 import {Icon} from '@rneui/themed';
-import {appImages, appStyles, colors, sizes} from '../../../services';
+import {appImages, appStyles, colors, routes, sizes} from '../../../services';
 import {totalSize, width, height} from 'react-native-dimension';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {goBack} from '../../../navigation/rootNavigation';
+import {useNavigation} from '@react-navigation/native';
 
 export default function CaptainsPage() {
+  const {navigate} = useNavigation();
   const DATA = [
     {
       title: 'In Team',
@@ -89,7 +91,9 @@ export default function CaptainsPage() {
               buttonStyle={styles.chip}
               text={item.class}
             />
-            <Text style={{color: colors.appTextColor9}}>View</Text>
+            <TouchableOpacity onPress={() => navigate(routes.teamForFusers)}>
+              <Text style={{color: colors.appTextColor9}}>View</Text>
+            </TouchableOpacity>
           </Wrapper>
         )}
         renderSectionHeader={({section: {title}}) => (

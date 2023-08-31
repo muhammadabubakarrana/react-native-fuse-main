@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, {useState, useEffect, useMemo} from 'react';
 import {
   View,
   Image,
@@ -11,22 +11,23 @@ import {
   Platform,
   KeyboardAvoidingView,
   Pressable,
-} from "react-native";
-import { Icon } from "@rneui/base";
-import { height, totalSize, width } from "react-native-dimension";
-import { colors, sizes, appStyles, HelpingMethods } from "../../services";
-import Modal from "react-native-modal";
-import { styles } from "./styles";
-import * as Lines from "../lines";
-import Wrapper from "../wrapper";
-import Text from "../text";
-import Spacer from "../spacer";
-import * as Icons from "../icons";
-import * as ScrollViews from "../scrollViews";
-import * as Buttons from "../buttons";
-import * as Common from "../common";
-import { Calendar, LocaleConfig } from "react-native-calendars";
-import DatePicker from "react-native-date-picker";
+} from 'react-native';
+import {Icon} from '@rneui/base';
+import {height, totalSize, width} from 'react-native-dimension';
+import {colors, sizes, appStyles, HelpingMethods} from '../../services';
+import Modal from 'react-native-modal';
+import {styles} from './styles';
+import * as Lines from '../lines';
+import Wrapper from '../wrapper';
+import Text from '../text';
+import Spacer from '../spacer';
+import * as Icons from '../icons';
+import * as ScrollViews from '../scrollViews';
+import * as Buttons from '../buttons';
+import * as Common from '../common';
+import {Calendar, LocaleConfig} from 'react-native-calendars';
+import DatePicker from 'react-native-date-picker';
+import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 
 export const Swipable = ({
   children,
@@ -41,16 +42,14 @@ export const Swipable = ({
       isVisible={isVisible}
       swipeDirection="down"
       onSwipeComplete={toggleModal}
-      style={{ margin: 0 }}
+      style={{margin: 0}}
       // backdropOpacity={0}
-      onBackdropPress={toggleModal}
-    >
+      onBackdropPress={toggleModal}>
       <Wrapper flex={1}>
         <Wrapper flex={headerFlex ? headerFlex : 1.5} />
         <Wrapper
           flex={footerFlex ? footerFlex : 8.5}
-          style={[styles.swipableModalFooter]}
-        >
+          style={[styles.swipableModalFooter]}>
           {children}
           <Wrapper style={[styles.barContainer]}>
             <Wrapper style={[appStyles.center]}>
@@ -58,7 +57,7 @@ export const Swipable = ({
                 <Lines.Horizontal
                   height={4}
                   width={width(15)}
-                  style={{ borderRadius: 5 }}
+                  style={{borderRadius: 5}}
                   color={colors.appBgColor3}
                 />
               </TouchableOpacity>
@@ -69,9 +68,8 @@ export const Swipable = ({
           <Wrapper
             isAbsolute
             style={[
-              { top: sizes.baseMargin * 1.5, left: sizes.marginHorizontal },
-            ]}
-          >
+              {top: sizes.baseMargin * 1.5, left: sizes.marginHorizontal},
+            ]}>
             <Icon name="close" />
           </Wrapper>
         </Wrapper>
@@ -103,11 +101,11 @@ export const SwipeablePrimary = ({
   let keyboardDidHideListener;
 
   useEffect(() => {
-    keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
       HelpingMethods.handleAnimation();
       setKeyboardVisible(true);
     });
-    keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
       HelpingMethods.handleAnimation();
       setKeyboardVisible(false);
     });
@@ -116,22 +114,21 @@ export const SwipeablePrimary = ({
   const defaultTopMargin = keyboardVisible
     ? height(12)
     : topMargin
-    ? Platform.OS === "ios"
+    ? Platform.OS === 'ios'
       ? topMargin
       : topMargin + height(5)
     : height(12);
   return (
     <Modal
       isVisible={visible} // Comment on video User
-      style={[{ margin: 0 }, containerStyle]}
+      style={[{margin: 0}, containerStyle]}
       onSwipeComplete={toggle}
-      swipeDirection={disableSwipe ? null : "down"}
+      swipeDirection={disableSwipe ? null : 'down'}
       propagateSwipe
       onBackdropPress={disableBackdropPress ? null : toggle}
       backdropOpacity={0.5}
       //backdropOpacity={backdropOpacity ? backdropOpacity : 0}
-      backdropColor={backdropColor && backdropColor}
-    >
+      backdropColor={backdropColor && backdropColor}>
       {/* <Wrapper flex={1}> */}
       {/* <LinearGradient style={{ flex: 1 }}
                 colors={['#00000000', '#000000']}
@@ -152,14 +149,13 @@ export const SwipeablePrimary = ({
             //...appStyles.shadowExtraDark
           },
           subContainerStyle,
-        ]}
-      >
+        ]}>
         {hideHeader ? null : (
           <View style={appStyles.rowCompContainer}>
-            <Wrapper style={{ alignItems: "center", right: 0, left: 0 }}>
+            <Wrapper style={{alignItems: 'center', right: 0, left: 0}}>
               <Text isTinyTitle style={[appStyles.headerTitleStyle]}>
                 {/* {data ? data.length + ' People' : 0 + ' People'} */}
-                {headerTitle ? headerTitle : "Title"}
+                {headerTitle ? headerTitle : 'Title'}
               </Text>
             </Wrapper>
             <View>
@@ -391,7 +387,7 @@ export const SwipeablePrimary = ({
 //     )
 // }
 
-export const PopupPrimary = ({ visible, toggle, children }) => {
+export const PopupPrimary = ({visible, toggle, children}) => {
   return (
     <SwipeablePrimary
       visible={visible}
@@ -399,14 +395,13 @@ export const PopupPrimary = ({ visible, toggle, children }) => {
       hideHeader
       //topMargin={height(50)}
       containerStyle={[appStyles.justifyContentFlexend]}
-      subContainerStyle={[{ flex: 0 }]}
-    >
+      subContainerStyle={[{flex: 0}]}>
       <Wrapper>
         <Wrapper alignItemsCenter paddingVerticalSmall>
           <Lines.Horizontal
             width={width(10)}
             height={height(0.5)}
-            style={{ borderRadius: 100 }}
+            style={{borderRadius: 100}}
             color={colors.appBgColor3}
           />
         </Wrapper>
@@ -437,7 +432,7 @@ export const CalendarPopup = ({
         // selectedTextColor: "yellow",
       },
     }),
-    [selected]
+    [selected],
   );
 
   // LocaleConfig.defaultLocale = "en";
@@ -449,14 +444,13 @@ export const CalendarPopup = ({
       hideHeader
       //topMargin={height(50)}
       containerStyle={[appStyles.justifyContentFlexend]}
-      subContainerStyle={[{ flex: 0 }]}
-    >
+      subContainerStyle={[{flex: 0}]}>
       <Wrapper>
         <Wrapper alignItemsCenter paddingVerticalSmall>
           <Lines.Horizontal
             width={width(10)}
             height={height(0.5)}
-            style={{ borderRadius: 100 }}
+            style={{borderRadius: 100}}
             color={colors.appBgColor3}
           />
         </Wrapper>
@@ -464,17 +458,17 @@ export const CalendarPopup = ({
           initialDate={initialDate}
           minDate={minDate}
           maxDate={maxDate}
-          onDayPress={(day) => {
+          onDayPress={day => {
             setSelected(day.dateString);
             props.onDaySelect && props.onDaySelect(day);
           }}
           theme={{
-            textMonthFontWeight: "700",
-            textDayHeaderFontWeight: "700",
-            todayButtonFontWeight: "700",
+            textMonthFontWeight: '700',
+            textDayHeaderFontWeight: '700',
+            todayButtonFontWeight: '700',
             textSectionTitleColor: colors.black,
             todayTextColor: colors.background,
-            dayTextColor: "#2d4150",
+            dayTextColor: '#2d4150',
             arrowColor: colors.background,
             // monthTextColor:  colors.background,
             // textDayFontWeight: "bold", // If you want the day numbers to be bold as well
@@ -488,7 +482,7 @@ export const CalendarPopup = ({
           <Spacer isBasic />
           <Buttons.Colored
             text={buttonText}
-            buttonStyle={{ marginHorizontal: 0 }}
+            buttonStyle={{marginHorizontal: 0}}
             //onPress={() => navigation.navigate("SignIn")}
             onPress={() => {
               toggle(), selectedDate(selected);
@@ -517,14 +511,13 @@ export const DateTimePopup = ({
       hideHeader
       //topMargin={height(50)}
       containerStyle={[appStyles.justifyContentFlexend]}
-      subContainerStyle={[{ flex: 0 }]}
-    >
+      subContainerStyle={[{flex: 0}]}>
       <Wrapper alignItemsCenter>
         <Wrapper alignItemsCenter paddingVerticalSmall>
           <Lines.Horizontal
             width={width(10)}
             height={height(0.5)}
-            style={{ borderRadius: 100 }}
+            style={{borderRadius: 100}}
             color={colors.appBgColor3}
           />
         </Wrapper>
@@ -534,10 +527,10 @@ export const DateTimePopup = ({
         <Spacer isBasic />
 
         <DatePicker
-          theme={"light"}
+          theme={'light'}
           mode={mode}
           date={date}
-          onDateChange={(_DateTime) => {
+          onDateChange={_DateTime => {
             setSelected(_DateTime);
           }}
         />
@@ -546,7 +539,7 @@ export const DateTimePopup = ({
         <Spacer isBasic />
         <Buttons.Colored
           text={buttonText}
-          buttonStyle={{ marginHorizontal: 0 }}
+          buttonStyle={{marginHorizontal: 0}}
           //onPress={() => navigation.navigate("SignIn")}
           onPress={() => {
             toggle(), selectedDateTame(selected);
@@ -585,8 +578,8 @@ export const OptionsPopupPrimary = ({
                 </Wrapper> */}
         <Spacer isSmall />
         {optoins.map((item, index) => {
-          const { label, value, icon, type, iconSize } = item;
-          const isErrorType = type === "error";
+          const {label, value, icon, type, iconSize} = item;
+          const isErrorType = type === 'error';
           const defaultIconSize = iconSize || totalSize(4);
           return (
             // <Pressable
@@ -606,15 +599,37 @@ export const OptionsPopupPrimary = ({
             // </Pressable>
             <Common.IconTitleColored
               key={index}
-              onPress={() => onPressOption(item, index)}
+              // onPress={() => onPressOption(item, index)}
               iconSize={defaultIconSize}
               icon={icon}
-              title={showMeStatus !== undefined ? showMeStatus && index === 0 ? "Show Me" : label : label}
+              title={
+                showMeStatus !== undefined
+                  ? showMeStatus && index === 0
+                    ? 'Show Me'
+                    : label
+                  : label
+              }
               // iconColor={isErrorType ? colors.error : colors.appTextColor1}
               // titleColor={isErrorType ? colors.error : colors.appTextColor1}
-              iconColor={isErrorType ? colors.error : showMeStatus !== undefined ? showMeStatus && index === 0 ? "#4792F0" : colors.appTextColor1 : colors.appTextColor1}
-              titleColor={isErrorType ? colors.error : showMeStatus !== undefined ? showMeStatus && index === 0 ? "#4792F0" : colors.appTextColor1 : colors.appTextColor1}
-              containerStyle={[{ marginBottom: height(2) }]}
+              iconColor={
+                isErrorType
+                  ? colors.error
+                  : showMeStatus !== undefined
+                  ? showMeStatus && index === 0
+                    ? '#4792F0'
+                    : colors.appTextColor1
+                  : colors.appTextColor1
+              }
+              titleColor={
+                isErrorType
+                  ? colors.error
+                  : showMeStatus !== undefined
+                  ? showMeStatus && index === 0
+                    ? '#4792F0'
+                    : colors.appTextColor1
+                  : colors.appTextColor1
+              }
+              containerStyle={[{marginBottom: height(2)}]}
             />
           );
         })}
@@ -624,3 +639,26 @@ export const OptionsPopupPrimary = ({
     </PopupPrimary>
   );
 };
+
+// export const Dropdown = ({visible, toggle}) => {
+//   //const [visible, setVisible] = useState(false);
+
+//   // const hideMenu = () => setVisible(false);
+
+//   // const showMenu = () => setVisible(true);
+
+//   return (
+//     // <View style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+//     <Menu
+//       visible={visible}
+//       // anchor={<Text onPress={showMenu}>Show menu</Text>}
+//       onRequestClose={toggle}>
+//       <MenuItem>Menu item 1</MenuItem>
+//       <MenuItem>Menu item 2</MenuItem>
+//       <MenuItem>Disabled item</MenuItem>
+//       <MenuDivider />
+//       <MenuItem>Menu item 4</MenuItem>
+//     </Menu>
+//     // </View>
+//   );
+// };

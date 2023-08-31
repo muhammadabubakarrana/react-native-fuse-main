@@ -107,6 +107,8 @@ const appIcons = {
   eye_icon: require('../../../assets/images/friends-view.png'),
   edit_event: require('../../../assets/images/edit_event.png'),
   pause_sharing: require('../../../assets/images/pause_sharing.png'),
+  borderedHeart: require('../../../assets/images/main/borderedHeart.png'),
+  doubleHeart: require('../../../assets/images/main/doubleHeart.png'),
 };
 
 const appSvgs = {};

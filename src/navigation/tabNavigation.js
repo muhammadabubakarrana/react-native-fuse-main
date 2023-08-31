@@ -15,10 +15,11 @@ import {
   SparkStackNavigator,
 } from './stackNavigation';
 import {SvgIcons} from '../services/constants/svg';
-import {colors} from '../services';
+import {baseStyle, colors} from '../services';
 import {Text} from '../components';
 import {totalSize, height, width} from 'react-native-dimension';
 const Tab = createBottomTabNavigator();
+
 const CustomTabBarButton = ({onPress, accessibilityState}) => {
   const postAddTab = accessibilityState.selected;
   return (
@@ -47,8 +48,8 @@ const CustomTabBarButton = ({onPress, accessibilityState}) => {
 };
 
 const BottomTabNavigator = () => {
+  //going to check keyboard status
   const [keyboardStatus, setKeyboardStatus] = useState(false);
-
   useEffect(() => {
     const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
       setKeyboardStatus(true);
@@ -62,9 +63,10 @@ const BottomTabNavigator = () => {
       hideSubscription.remove();
     };
   }, []);
+
   return (
     <Tab.Navigator
-      initialRouteName="ProfileHome"
+      initialRouteName="Scroll"
       screenOptions={{
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
@@ -243,7 +245,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.48,
     shadowRadius: 11.95,
     elevation: 18,
-    paddingHorizontal: 20,
+    paddingHorizontal: baseStyle.paddingHorizontal(20),
   },
   logoMainBox: {
     justifyContent: 'center',
@@ -253,8 +255,8 @@ const styles = StyleSheet.create({
   logoBox: {
     backgroundColor: '#E7EBEA',
     borderRadius: 24,
-    height: 82,
-    width: 78,
+    height: baseStyle.height(82),
+    width: baseStyle.width(78),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -264,8 +266,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   iconStyle: {
-    height: 36,
-    width: 36,
+    height: baseStyle.height(36),
+    width: baseStyle.width(36),
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
@@ -274,13 +276,13 @@ const styles = StyleSheet.create({
   activeIconStyle: {
     backgroundColor: colors.appColor1,
     borderRadius: 22,
-    height: 74,
-    width: 65,
+    height: baseStyle.height(74),
+    width: baseStyle.width(65),
     alignItems: 'center',
     justifyContent: 'center',
   },
   tabText: {
-    fontSize: 10,
+    fontSize: baseStyle.fontSize(10),
     fontWeight: 400,
     paddingTop: 8,
     textTransform: 'capitalize',
