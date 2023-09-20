@@ -49,22 +49,6 @@ export const Colored = ({
             flexDirection: direction ? direction : 'row',
             alignItems: 'center',
           }}>
-          {customIcon ? (
-            <Icons.Custom
-              icon={customIcon}
-              size={iconSize ? iconSize : totalSize(3)}
-              color={tintColor && tintColor}
-              containerStyle={[{marginRight: width(2.5)}, iconStyle]}
-            />
-          ) : iconName ? (
-            <Icon
-              name={iconName ? iconName : 'email-outline'}
-              type={iconType ? iconType : 'material-community'}
-              size={iconSize ? iconSize : totalSize(3)}
-              color={tintColor ? tintColor : colors.appTextColor6}
-              iconStyle={[{marginRight: width(2.5)}, iconStyle]}
-            />
-          ) : null}
           {isLoading ? (
             <ActivityIndicator
               color={activityColor ? activityColor : colors.appBgColor1}
@@ -84,6 +68,22 @@ export const Colored = ({
               {text}
             </Text>
           )}
+          {customIcon ? (
+            <Icons.Custom
+              icon={customIcon}
+              size={iconSize ? iconSize : totalSize(3)}
+              color={tintColor && tintColor}
+              containerStyle={[{marginRight: width(2.5)}, iconStyle]}
+            />
+          ) : iconName ? (
+            <Icon
+              name={iconName ? iconName : 'email-outline'}
+              type={iconType ? iconType : 'material-community'}
+              size={iconSize ? iconSize : totalSize(3)}
+              color={tintColor ? tintColor : colors.appTextColor6}
+              iconStyle={[{marginRight: width(2.5)}, iconStyle]}
+            />
+          ) : null}
         </Wrapper>
       </Wrapper>
     </TouchableOpacity>

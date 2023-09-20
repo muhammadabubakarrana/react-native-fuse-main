@@ -74,7 +74,7 @@ const PhotosSwitch = () => {
                 justifyContent: 'center',
                 height: height(14),
                 width: width(15),
-                borderColor: '#DEE1E1',
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
@@ -98,13 +98,17 @@ const PhotosSwitch = () => {
                 alignItems: 'center',
                 height: height(14),
                 width: width(15),
-                backgroundColor: '#FFF',
-                borderColor: '#DEE1E1',
+                backgroundColor: colors.appTextColor11,
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
               }}>
-              <SvgIcons.PlusIcon fillColor={colors.appColor1} />
+              <SvgIcons.PlusIcon
+                width={'20'}
+                height={'20'}
+                fillColor={'#B5C6C4'}
+              />
             </TouchableOpacity>
           )}
           {imageTwo !== null ? (
@@ -115,7 +119,7 @@ const PhotosSwitch = () => {
                 justifyContent: 'center',
                 height: height(14),
                 width: width(15),
-                borderColor: '#DEE1E1',
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
@@ -139,13 +143,17 @@ const PhotosSwitch = () => {
                 alignItems: 'center',
                 height: height(14),
                 width: width(15),
-                backgroundColor: '#FFF',
-                borderColor: '#DEE1E1',
+                backgroundColor: colors.appTextColor11,
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
               }}>
-              <SvgIcons.PlusIcon fillColor={colors.appColor1} />
+              <SvgIcons.PlusIcon
+                width={'20'}
+                height={'20'}
+                fillColor={'#B5C6C4'}
+              />
             </TouchableOpacity>
           )}
           {imageThree !== null ? (
@@ -156,7 +164,7 @@ const PhotosSwitch = () => {
                 justifyContent: 'center',
                 height: height(14),
                 width: width(15),
-                borderColor: '#DEE1E1',
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
               }}>
@@ -179,12 +187,16 @@ const PhotosSwitch = () => {
                 alignItems: 'center',
                 height: height(14),
                 width: width(15),
-                backgroundColor: '#FFF',
-                borderColor: '#DEE1E1',
+                backgroundColor: colors.appTextColor11,
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
               }}>
-              <SvgIcons.PlusIcon fillColor={colors.appColor1} />
+              <SvgIcons.PlusIcon
+                width={'20'}
+                height={'20'}
+                fillColor={'#B5C6C4'}
+              />
             </TouchableOpacity>
           )}
         </View>
@@ -198,7 +210,7 @@ const PhotosSwitch = () => {
                 justifyContent: 'center',
                 height: height(14),
                 width: width(15),
-                borderColor: '#DEE1E1',
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
@@ -222,13 +234,17 @@ const PhotosSwitch = () => {
                 alignItems: 'center',
                 height: height(14),
                 width: width(15),
-                backgroundColor: '#FFF',
-                borderColor: '#DEE1E1',
+                backgroundColor: colors.appTextColor11,
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
               }}>
-              <SvgIcons.PlusIcon fillColor={colors.appColor1} />
+              <SvgIcons.PlusIcon
+                width={'20'}
+                height={'20'}
+                fillColor={'#B5C6C4'}
+              />
             </TouchableOpacity>
           )}
           {imageFive !== null ? (
@@ -239,7 +255,7 @@ const PhotosSwitch = () => {
                 justifyContent: 'center',
                 height: height(14),
                 width: width(15),
-                borderColor: '#DEE1E1',
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
@@ -263,13 +279,17 @@ const PhotosSwitch = () => {
                 alignItems: 'center',
                 height: height(14),
                 width: width(15),
-                backgroundColor: '#FFF',
-                borderColor: '#DEE1E1',
+                backgroundColor: colors.appTextColor11,
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
                 marginRight: totalSize(1),
               }}>
-              <SvgIcons.PlusIcon fillColor={colors.appColor1} />
+              <SvgIcons.PlusIcon
+                width={'20'}
+                height={'20'}
+                fillColor={'#B5C6C4'}
+              />
             </TouchableOpacity>
           )}
           {imageSix !== null ? (
@@ -280,7 +300,7 @@ const PhotosSwitch = () => {
                 justifyContent: 'center',
                 height: height(14),
                 width: width(15),
-                borderColor: '#DEE1E1',
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
               }}>
@@ -303,12 +323,16 @@ const PhotosSwitch = () => {
                 alignItems: 'center',
                 height: height(14),
                 width: width(15),
-                backgroundColor: '#FFF',
-                borderColor: '#DEE1E1',
+                backgroundColor: colors.appTextColor11,
+                borderColor: '#4A5458',
                 borderWidth: 1,
                 borderRadius: 8,
               }}>
-              <SvgIcons.PlusIcon fillColor={colors.appColor1} />
+              <SvgIcons.PlusIcon
+                width={'20'}
+                height={'20'}
+                fillColor={'#B5C6C4'}
+              />
             </TouchableOpacity>
           )}
         </View>

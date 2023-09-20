@@ -11,47 +11,58 @@ import {
   Wrapper,
   Spacer,
   Text,
+  Images,
 } from '../../../components';
 import {appStyles, colors, routes, sizes, baseStyle} from '../../../services';
 import {useNavigation} from '@react-navigation/native';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {CountryPicker} from 'react-native-country-codes-picker';
+import useKeyboard from '../../../services/hooks/useKeyboard';
 
 const Welcome = () => {
   const navigation = useNavigation();
   const [countryCode, setCountryCode] = useState('');
   const [countryFlag, setCountryFlag] = useState('🇨🇦');
   const [show, setShow] = useState(false);
+  const keyboardVisible = useKeyboard();
 
   return (
-    <Wrapper isMain style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-      <CustomStatusBar barStyle={'dark'} backgroundColor={'#FFFFFF'} />
-      <ScrollViews.KeyboardAvoiding>
-        <Wrapper marginHorizontalBase marginVerticalBase>
-          <Text
-            style={{
-              fontSize: baseStyle.fontSize(42),
-              fontWeight: '900',
-              color: '#383838',
-            }}>
-            Welcome to{`\n`}Fuse
-          </Text>
-        </Wrapper>
+    <Wrapper isMain style={{flex: 1, backgroundColor: colors.appBgColor14}}>
+      <CustomStatusBar
+        barStyle={'dark'}
+        backgroundColor={colors.appBgColor14}
+      />
+      <ScrollViews.KeyboardAvoiding style={{flex: 1}}>
+        <Spacer isDoubleBase />
         <Wrapper
-          style={{paddingVertical: totalSize(7)}}
+          justifyContentSpaceEvenly
           marginHorizontalBase
           marginVerticalBase
-          alignItemsCenter>
-          <Logos.Primary size={totalSize(12)} />
-        </Wrapper>
-        <Spacer isBasic />
-        <Wrapper marginHorizontalBase>
-          <Wrapper
-            style={{marginBottom: baseStyle.marginBottom(13)}}
-            marginHorizontalBase>
+          // justifyContentCenter
+          flex={1}>
+          <Wrapper>
+            <Text
+              style={{
+                fontSize: baseStyle.fontSize(42),
+                fontWeight: '900',
+                color: '#383838',
+                textAlign: 'center',
+              }}>
+              Welcome{`\n`}to Fuse
+            </Text>
+          </Wrapper>
+          <Spacer isDoubleBase />
+          <Wrapper marginVerticalLarge alignItemsCenter>
+            <Logos.Primary size={totalSize(18)} />
+          </Wrapper>
+          <Spacer isDoubleBase />
+
+          <Wrapper marginHorizontalBase>
+            {/* Text input */}
             <View
               style={{
                 flexDirection: 'row',
+                backgroundColor: '#FFF',
                 borderColor: '#DEE1E1',
                 borderWidth: 1,
                 borderRadius: 8,
@@ -67,9 +78,7 @@ const Welcome = () => {
                   borderRightWidth: 1,
                   paddingRight: totalSize(1),
                 }}>
-                <Text style={{fontSize: baseStyle.fontSize(20)}}>
-                  {countryFlag}
-                </Text>
+                <Text style={{fontSize: 20}}>{countryFlag}</Text>
               </TouchableOpacity>
               <View style={{flex: 1, justifyContent: 'center'}}>
                 <TextInputs.Colored
@@ -85,34 +94,70 @@ const Welcome = () => {
               </View>
             </View>
             <Spacer isBasic />
+            {/* button */}
             <Buttons.Colored
-              text="Send Verification Code"
+              text="Sign Up"
               buttonStyle={{marginHorizontal: 0}}
-              onPress={() =>
-                navigation.navigate('CodeVerification', {choice: 'a'})
-              }
-            />
-            <Spacer isDoubleBase />
-            <Spacer isDoubleBase />
-            <Buttons.Colored
-              text="Sign In"
-              buttonStyle={{marginHorizontal: 0}}
-              onPress={() => navigation.navigate('SignIn')}
+              onPress={() => navigation.navigate('CodeVerification')}
             />
             <Spacer isBasic />
-            <Buttons.Colored
-              text="Create Account with the email"
-              buttonStyle={{marginHorizontal: 0}}
+            {/* TExt */}
+            <Text
               onPress={() => navigation.navigate('SignUp')}
-            />
+              style={{
+                color: '#383838',
+                fontSize: baseStyle.fontSize(16),
+                fontWeight: '400',
+                textAlign: 'center',
+                lineHeight: baseStyle.lineHight(22.4),
+              }}>
+              Create Account with the email
+            </Text>
+          </Wrapper>
+          {/* sign in */}
+          <Spacer isDoubleBase />
+          <Spacer isDoubleBase />
+          <Spacer isDoubleBase />
+          <Wrapper>
+            <Text
+              onPress={() => navigation.navigate('SignIn')}
+              style={{
+                fontSize: baseStyle.fontSize(14),
+                fontWeight: '400',
+                textAlign: 'center',
+                lineHeight: baseStyle.lineHight(22.4),
+              }}>
+              <Text style={{color: '#383838'}}>Already have an account? </Text>
+              <Text style={{fontWeight: '800', color: '#383838'}}>
+                {'  Sign In'}
+              </Text>
+            </Text>
           </Wrapper>
         </Wrapper>
       </ScrollViews.KeyboardAvoiding>
+      {/* {keyboardVisible ? null : (
+        <Wrapper>
+          <Text
+            onPress={() => navigation.navigate('SignIn')}
+            style={{
+              fontSize: baseStyle.fontSize(14),
+              fontWeight: '400',
+              textAlign: 'center',
+              lineHeight: baseStyle.lineHight(22.4),
+            }}>
+            <Text style={{color: '#383838'}}>Already have an account? </Text>
+            <Text style={{fontWeight: '800', color: '#383838'}}>
+              {'  Sign In'}
+            </Text>
+          </Text>
+        </Wrapper>
+      )} */}
+      <Spacer isBasic />
       <CountryPicker
         show={show}
         style={{
           modal: {
-            height: 500,
+            height: height(50),
           },
         }}
         onBackdropPress={() => setShow(false)}

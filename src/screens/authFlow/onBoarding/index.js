@@ -17,23 +17,30 @@ import {
   Wrapper,
   Spacer,
   Text,
+  Lines,
 } from '../../../components';
 import {useNavigation} from '@react-navigation/native';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {colors, baseStyle} from '../../../services';
 import DatePicker from 'react-native-date-picker';
 import {SvgIcons} from '../../../services/constants/svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {setUserType} from '../../../services/redux/slices/userType';
+import {Icon} from '@rneui/base';
+import {goBack} from '../../../navigation/rootNavigation';
 
 const circleList = [1, 2, 3, 4];
 
 const OnBoarding = props => {
+  const {userType} = useSelector(state => state.userType);
+  const dispatch = useDispatch();
   const goToGetStarted = props.route.params?.goToGetStarted;
   const navigation = useNavigation();
   const scrollViewRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dateTime, setDateTime] = useState(new Date());
-  const [notificationEnable, setNotificationEnable] = useState(true);
-  const [userType, setUserType] = useState(null);
+  const [activeTab, setActivetab] = useState(0);
+  const [user, setUser] = useState(1);
 
   const nextPageHandle = index => {
     setCurrentIndex(index);
@@ -44,147 +51,188 @@ const OnBoarding = props => {
   };
 
   const MatchmakerCliked = () => {
-    if (goToGetStarted === 'getStarted') {
-      navigation.navigate('BottomTab');
-    } else if (goToGetStarted === undefined) {
-      navigation.navigate('PhoneVerification', {
-        choice: 'matchMaker',
-      });
-    }
+    dispatch(setUserType('FusingMatchMaker'));
+
+    navigation.navigate('BottomTab');
   };
 
   const DaterCliked = () => {
-    if (goToGetStarted === 'getStarted') {
-      navigation.navigate('GetStarted');
-    } else if (goToGetStarted === undefined) {
-      navigation.navigate('PhoneVerification', {choice: 'dater'});
-    }
+    dispatch(setUserType('GettingFusedDater'));
+
+    navigation.navigate('GetStarted');
   };
 
   return (
-    <Wrapper isMain style={{flex: 1, backgroundColor: '#F8F9F9'}}>
-      <CustomStatusBar barStyle={'dark'} backgroundColor={'#F8F9F9'} />
+    <Wrapper isMain style={{flex: 1, backgroundColor: colors.appTextColor11}}>
+      <CustomStatusBar
+        barStyle={'dark'}
+        backgroundColor={colors.appTextColor11}
+      />
       <Spacer isDoubleBase />
-      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-        {circleList?.map((val, key) => {
-          return (
-            <View
-              key={key}
-              style={{
-                height: 14,
-                width: 14,
-                borderRadius: 100,
-                backgroundColor:
-                  currentIndex === key ? colors.appColor1 : '#FFF',
-                borderWidth: currentIndex === key ? 0 : 1,
-                borderColor: '#000000',
-                marginLeft: key === 0 ? 0 : 12,
-              }}></View>
-          );
-        })}
+      <View>
+        <Lines.Horizontal
+          color={'#4A5458'}
+          style={{alignSelf: 'center'}}
+          width={'90%'}
+        />
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          {circleList?.map((val, key) => {
+            return (
+              <>
+                <View
+                  key={key}
+                  style={{
+                    height: 7,
+                    width: '22.5%',
+                    //  borderRadius: 100,
+                    backgroundColor:
+                      currentIndex === key ? '#B5C6C4' : 'transparent',
+                    // borderWidth: currentIndex === key ? 0 : 1,
+                    borderColor: '#000000',
+                    // marginLeft: key === 0 ? 0 : 12,
+                  }}></View>
+              </>
+            );
+          })}
+        </View>
       </View>
+
       <ScrollView
         horizontal
         ref={scrollViewRef}
         scrollEnabled={false}
         showsHorizontalScrollIndicator={false}>
+        {/* Screen 1*/}
         <View
           style={{
             flex: 1,
-            justifyContent: 'center',
+            //  justifyContent: 'center',
             width: Dimensions.get('window').width,
+            //height: Dimensions.get('window').height,
           }}>
-          <Wrapper marginHorizontalBase marginVerticalBase alignItemsCenter>
+          <Wrapper marginHorizontalLarge marginVerticalBase alignItemsFlexStart>
             <Text
               style={{
-                fontSize: baseStyle.fontSize(30),
+                fontSize: baseStyle.fontSize(42),
                 fontWeight: '900',
-                color: '#383838',
-                textAlign: 'center',
+                color: colors.snow,
               }}>
-              Let’s Get Started
+              Let’s Get{`\n`}Started
             </Text>
             <Spacer isBasic />
             <Text
               style={{
-                color: '#586160',
+                color: '#B5C6C4',
                 fontSize: baseStyle.fontSize(14),
                 fontWeight: '400',
                 textAlign: 'center',
-                lineHeight: 22.4,
+                lineHeight: baseStyle.lineHight(22),
               }}>
               This few step wizzard will help you filling{`\n`}up all
               informations needed to get started
             </Text>
           </Wrapper>
           <Spacer isBasic />
-          <Wrapper marginHorizontalBase>
-            <Wrapper marginHorizontalLarge>
-              <TextInputs.Colored
-                title={'First Name'}
-                placeholder={''}
-                containerStyle={{marginHorizontal: 0, width: '100%'}}
-                inputStyle={{
-                  backgroundColor: '#FFF',
-                  borderColor: '#DEE1E1',
-                  borderWidth: 1,
-                  borderRadius: 8,
-                }}
-              />
-              <Spacer isBasic />
-              <TextInputs.Colored
-                title={'Last Name'}
-                placeholder={''}
-                containerStyle={{marginHorizontal: 0, width: '100%'}}
-                inputStyle={{
-                  backgroundColor: '#FFF',
-                  borderColor: '#DEE1E1',
-                  borderWidth: 1,
-                  borderRadius: 8,
-                }}
-              />
-              <Spacer isDoubleBase />
+          {/* inputs */}
+          <Wrapper marginHorizontalLarge>
+            <TextInputs.Underlined
+              // placeholderTextColor={colors.snow}
+              inputStyle={{
+                color: colors.snow,
+                fontSize: baseStyle.fontSize(15),
+              }}
+              value={'Bojan'}
+              placeholder={'First Name'}
+              containerStyle={{marginHorizontal: 0}}
+            />
+            <Spacer isBasic />
+            <TextInputs.Underlined
+              //  placeholderTextColor={colors.snow}
+              inputStyle={{
+                color: colors.snow,
+                fontSize: baseStyle.fontSize(15),
+              }}
+              placeholder={'Last Name'}
+              containerStyle={{marginHorizontal: 0}}
+            />
+          </Wrapper>
+
+          {/* Screen 1 Button */}
+          <Wrapper
+            marginHorizontalMedium
+            style={{flexDirection: 'row', position: 'absolute', bottom: 15}}>
+            <View style={{flex: 1, justifyContent: 'center', marginRight: 6}}>
+              {/* BAck */}
+              <TouchableOpacity onPress={goBack}>
+                <Wrapper
+                  justifyContentFlexstart
+                  flexDirectionRow
+                  alignItemsCenter
+                  marginVerticalTiny>
+                  <Icon
+                    size={totalSize(3.5)}
+                    type="material-icons"
+                    name="keyboard-backspace"
+                    color={colors.snow}
+                  />
+                  <Text
+                    style={{
+                      fontSize: baseStyle.fontSize(16),
+                      color: colors.snow,
+                      marginLeft: 5,
+                    }}>
+                    Back
+                  </Text>
+                </Wrapper>
+              </TouchableOpacity>
+            </View>
+            <View style={{flex: 1, justifyContent: 'center', marginLeft: 6}}>
               <Buttons.Colored
+                iconStyle={{marginLeft: baseStyle.marginLeft(7)}}
                 text="Next"
+                textStyle={{marginLeft: baseStyle.marginLeft(10)}}
+                iconName={'east'}
+                iconType={'material-icons'}
                 onPress={() => nextPageHandle(1)}
                 buttonStyle={{marginHorizontal: 0}}
               />
-            </Wrapper>
-            <Spacer isDoubleBase />
+            </View>
           </Wrapper>
         </View>
+        {/* Screen 2*/}
         <View
           style={{
             flex: 1,
-            justifyContent: 'center',
+            // justifyContent: 'center',
             width: Dimensions.get('window').width,
           }}>
-          <Wrapper marginHorizontalBase marginVerticalBase alignItemsCenter>
+          <Wrapper marginHorizontalBase marginVerticalLarge>
             <Text
               style={{
-                fontSize: baseStyle.fontSize(30),
+                fontSize: baseStyle.fontSize(42),
                 fontWeight: '900',
-                color: '#383838',
-                textAlign: 'center',
+                color: colors.snow,
               }}>
-              What’s your date{`\n`}of birth
+              What’s your{`\n`}date of birth
             </Text>
             <Spacer isBasic />
             <Text
               style={{
-                color: '#586160',
+                color: '#B5C6C4',
                 fontSize: baseStyle.fontSize(14),
                 fontWeight: '400',
-                textAlign: 'center',
+
                 lineHeight: 22.4,
               }}>
               This info can’t be change later
             </Text>
           </Wrapper>
           <Spacer isBasic />
-          <Wrapper alignItemsCenter style={{backgroundColor: '#FFF'}}>
+          <Wrapper alignItemsCenter>
             <DatePicker
-              theme={'light'}
+              fadeToColor={colors.appTextColor11}
+              //textColor={colors.snow}
+              theme={'dark'}
               mode={'date'}
               date={dateTime}
               onDateChange={time => {
@@ -193,146 +241,177 @@ const OnBoarding = props => {
             />
           </Wrapper>
           <Spacer isDoubleBase />
-          <Wrapper marginHorizontalBase>
-            <Wrapper marginHorizontalBase style={{flexDirection: 'row'}}>
-              <View style={{flex: 1, justifyContent: 'center', marginRight: 6}}>
-                <Buttons.Colored
-                  text="Back"
-                  onPress={() => nextPageHandle(0)}
-                  textStyle={{color: '#586160'}}
-                  buttonStyle={{
-                    marginHorizontal: 0,
-                    backgroundColor: '#E7E9E9',
-                    borderWidth: 0,
-                  }}
-                />
-              </View>
-              <View style={{flex: 1, justifyContent: 'center', marginLeft: 6}}>
-                <Buttons.Colored
-                  text="Next"
-                  onPress={() => nextPageHandle(2)}
-                  buttonStyle={{marginHorizontal: 0}}
-                />
-              </View>
-            </Wrapper>
-            <Spacer isDoubleBase />
+          {/* Screen 2 Button */}
+          <Wrapper
+            marginHorizontalMedium
+            style={{flexDirection: 'row', position: 'absolute', bottom: 15}}>
+            <View style={{flex: 1, justifyContent: 'center', marginRight: 6}}>
+              {/* BAck */}
+              <TouchableOpacity onPress={() => nextPageHandle(0)}>
+                <Wrapper
+                  justifyContentFlexstart
+                  flexDirectionRow
+                  alignItemsCenter
+                  marginVerticalTiny>
+                  <Icon
+                    size={totalSize(3.5)}
+                    type="material-icons"
+                    name="keyboard-backspace"
+                    color={colors.snow}
+                  />
+                  <Text
+                    style={{
+                      fontSize: baseStyle.fontSize(16),
+                      color: colors.snow,
+                      marginLeft: 5,
+                    }}>
+                    Back
+                  </Text>
+                </Wrapper>
+              </TouchableOpacity>
+            </View>
+            <View style={{flex: 1, justifyContent: 'center', marginLeft: 6}}>
+              <Buttons.Colored
+                iconStyle={{marginLeft: baseStyle.marginLeft(7)}}
+                text="Next"
+                textStyle={{marginLeft: baseStyle.marginLeft(10)}}
+                iconName={'east'}
+                iconType={'material-icons'}
+                onPress={() => nextPageHandle(2)}
+                buttonStyle={{marginHorizontal: 0}}
+              />
+            </View>
           </Wrapper>
         </View>
+        {/* Screen 3*/}
         <View
           style={{
             flex: 1,
-            justifyContent: 'center',
+
             width: Dimensions.get('window').width,
           }}>
-          <Wrapper marginHorizontalBase marginVerticalBase alignItemsCenter>
+          <Wrapper marginHorizontalBase marginVerticalLarge>
             <Text
               style={{
                 fontSize: baseStyle.fontSize(30),
                 fontWeight: '900',
-                color: '#383838',
-                textAlign: 'center',
+                color: colors.snow,
               }}>
               Never miss a{`\n`}message
             </Text>
           </Wrapper>
           <Spacer isBasic />
-          <Wrapper marginHorizontalBase>
-            <View
-              style={{
-                flexDirection: 'row',
-                borderWidth: 1,
-                borderColor: '#E6E9E9',
-                borderRadius: 100,
-              }}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => setNotificationEnable(false)}
+          {/* Notification Buttons */}
+          <Wrapper marginVerticalBase marginHorizontalBase>
+            <TouchableOpacity onPress={() => setActivetab(!activeTab)}>
+              <Wrapper
+                marginVerticalTiny
+                flexDirectionRow
+                alignItemsCenter
+                paddingHorizontalBase
+                paddingVerticalMedium
                 style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  paddingHorizontal: totalSize(1),
-                  paddingVertical: totalSize(1.4),
-                  borderRadius: 100,
-                  backgroundColor: !notificationEnable
-                    ? colors.appColor1
-                    : 'transparent',
+                  backgroundColor: activeTab
+                    ? colors.appTextColor11
+                    : colors.appBgColor12,
+                  borderRadius: 15,
+                  borderWidth: activeTab ? 1 : 0,
+                  borderColor: '#4A5458',
                 }}>
                 <Text
                   style={{
-                    color: !notificationEnable ? '#FFF' : '#000000',
-                    fontSize: baseStyle.fontSize(14),
-                    fontWeight: '400',
-                    textAlign: 'center',
-                  }}>
-                  Disable Notifications
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => setNotificationEnable(true)}
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  paddingHorizontal: totalSize(1),
-                  paddingVertical: totalSize(1.4),
-                  borderRadius: 100,
-                  backgroundColor: notificationEnable
-                    ? colors.appColor1
-                    : 'transparent',
-                }}>
-                <Text
-                  style={{
-                    color: notificationEnable ? '#FFF' : '#000000',
-                    fontSize: baseStyle.fontSize(14),
-                    fontWeight: '400',
-                    textAlign: 'center',
+                    fontSize: baseStyle.fontSize(16),
+                    fontWeight: 900,
+                    color: activeTab ? colors.snow : colors.black,
+                    marginLeft: baseStyle.marginLeft(8),
                   }}>
                   Enable Notifications
                 </Text>
+              </Wrapper>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActivetab(!activeTab)}>
+              <Wrapper
+                marginVerticalTiny
+                flexDirectionRow
+                alignItemsCenter
+                paddingHorizontalBase
+                paddingVerticalMedium
+                style={{
+                  backgroundColor: activeTab
+                    ? colors.appBgColor12
+                    : colors.appTextColor11,
+                  borderRadius: 15,
+                  borderWidth: activeTab ? 0 : 1,
+                  borderColor: '#4A5458',
+                }}>
+                <Text
+                  style={{
+                    fontSize: baseStyle.fontSize(16),
+                    fontWeight: 900,
+                    color: activeTab ? colors.black : colors.snow,
+                    marginLeft: baseStyle.marginLeft(8),
+                  }}>
+                  Disable Notifications
+                </Text>
+              </Wrapper>
+            </TouchableOpacity>
+          </Wrapper>
+          {/* Screen 3 Button */}
+          <Wrapper
+            marginHorizontalMedium
+            style={{flexDirection: 'row', position: 'absolute', bottom: 15}}>
+            <View style={{flex: 1, justifyContent: 'center', marginRight: 6}}>
+              {/* BAck */}
+              <TouchableOpacity onPress={() => nextPageHandle(1)}>
+                <Wrapper
+                  justifyContentFlexstart
+                  flexDirectionRow
+                  alignItemsCenter
+                  // marginHorizontalBase
+                  marginVerticalTiny>
+                  <Icon
+                    size={totalSize(3.5)}
+                    type="material-icons"
+                    name="keyboard-backspace"
+                    color={colors.snow}
+                  />
+                  <Text
+                    style={{
+                      fontSize: baseStyle.fontSize(16),
+                      color: colors.snow,
+                      marginLeft: 5,
+                    }}>
+                    Back
+                  </Text>
+                </Wrapper>
               </TouchableOpacity>
             </View>
-            <Spacer isDoubleBase />
-            <Spacer isDoubleBase />
-            <Spacer isDoubleBase />
-            <Spacer isDoubleBase />
-            <Spacer isDoubleBase />
-            <Wrapper marginHorizontalBase style={{flexDirection: 'row'}}>
-              <View style={{flex: 1, justifyContent: 'center', marginRight: 6}}>
-                <Buttons.Colored
-                  text="Back"
-                  onPress={() => nextPageHandle(1)}
-                  textStyle={{color: '#586160'}}
-                  buttonStyle={{
-                    marginHorizontal: 0,
-                    backgroundColor: '#E7E9E9',
-                    borderWidth: 0,
-                  }}
-                />
-              </View>
-              <View style={{flex: 1, justifyContent: 'center', marginLeft: 6}}>
-                <Buttons.Colored
-                  text="Next"
-                  onPress={() => nextPageHandle(3)}
-                  buttonStyle={{marginHorizontal: 0}}
-                />
-              </View>
-            </Wrapper>
-            <Spacer isDoubleBase />
+            <View style={{flex: 1, justifyContent: 'center', marginLeft: 6}}>
+              <Buttons.Colored
+                iconStyle={{marginLeft: baseStyle.marginLeft(7)}}
+                text="Next"
+                textStyle={{marginLeft: baseStyle.marginLeft(10)}}
+                iconName={'east'}
+                iconType={'material-icons'}
+                onPress={() => nextPageHandle(3)}
+                buttonStyle={{marginHorizontal: 0}}
+              />
+            </View>
           </Wrapper>
         </View>
+        {/* Screen 4*/}
         <View
           style={{
             flex: 1,
-            justifyContent: 'center',
+
             width: Dimensions.get('window').width,
           }}>
-          <Wrapper marginHorizontalBase marginVerticalBase alignItemsCenter>
+          <Wrapper marginHorizontalBase marginVerticalLarge alignItemsCenter>
             <Text
               style={{
-                fontSize: baseStyle.fontSize(30),
+                fontSize: baseStyle.fontSize(42),
                 fontWeight: '900',
-                color: '#383838',
-                textAlign: 'center',
+                color: colors.snow,
               }}>
               Are you Dater or Matchmaker
             </Text>
@@ -343,94 +422,112 @@ const OnBoarding = props => {
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
-                  setUserType(0);
-                  // navigation.navigate('PhoneVerification', {
-                  //   choice: 'matchMaker',
-                  // });
+                  setUser(0);
                   MatchmakerCliked();
                 }}
                 style={{
                   flex: 1,
                   justifyContent: 'center',
                   paddingHorizontal: totalSize(1),
-                  height: 153,
+                  height: totalSize(20),
                   marginRight: 8,
-                  borderWidth: userType === 0 ? 0 : 1,
+                  borderWidth: user === 0 ? 0 : 1,
                   borderColor: '#E6E9E9',
                   alignItems: 'center',
                   borderRadius: 10,
                   backgroundColor:
-                    userType === 0 ? colors.appColor1 : 'transparent',
+                    user === 0 ? colors.appBgColor12 : 'transparent',
                 }}>
                 <SvgIcons.DualHeartIcon
-                  fillColor={userType === 0 ? '#F8F9F9' : '#3F3F46'}
+                  width={baseStyle.width(77)}
+                  height={baseStyle.height(48)}
+                  fillColor={user === 0 ? '#F8F9F9' : '#3F3F46'}
                 />
                 <Spacer isBasic />
                 <Text
                   style={{
-                    color: userType === 0 ? '#FFF' : '#000000',
-                    fontSize: baseStyle.fontSize(14),
-                    fontWeight: '400',
-                    textAlign: 'center',
+                    color: user === 0 ? colors.black : colors.snow,
+                    fontSize: baseStyle.fontSize(24),
+                    fontWeight: '900',
+                    //  textAlign: 'center',
                   }}>
-                  Fusing{`\n`}Matchmaker
+                  Fusing{`\n`}
+                  <Text
+                    style={{
+                      fontSize: baseStyle.fontSize(16),
+                      fontWeight: '400',
+                    }}>
+                    Matchmaker
+                  </Text>
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
-                  setUserType(1);
+                  setUser(1);
                   DaterCliked();
-                  // navigation.navigate('PhoneVerification', {choice: 'dater'});
                 }}
                 style={{
                   flex: 1,
                   justifyContent: 'center',
                   paddingHorizontal: totalSize(1),
-                  height: 153,
+                  height: totalSize(20),
                   marginLeft: 8,
-                  borderWidth: userType === 1 ? 0 : 1,
+                  borderWidth: user === 1 ? 0 : 1,
                   borderColor: '#E6E9E9',
                   alignItems: 'center',
                   borderRadius: 10,
                   backgroundColor:
-                    userType === 1 ? colors.appColor1 : 'transparent',
+                    user === 1 ? colors.appBgColor12 : 'transparent',
                 }}>
                 <SvgIcons.HeartIcon
-                  fillColor={userType === 1 ? '#F8F9F9' : '#3F3F46'}
+                  width={baseStyle.width(54)}
+                  height={baseStyle.height(48)}
+                  fillColor={user === 1 ? '#3F3F46' : '#F8F9F9'}
                 />
                 <Spacer isBasic />
                 <Text
                   style={{
-                    color: userType === 1 ? '#FFF' : '#000000',
-                    fontSize: baseStyle.fontSize(14),
-                    fontWeight: '400',
-                    textAlign: 'center',
+                    color: user === 0 ? colors.snow : colors.black,
+                    fontSize: baseStyle.fontSize(24),
+                    fontWeight: '900',
                   }}>
-                  Getting fused{`\n`}Dater
+                  Get Fused{`\n`}
+                  <Text
+                    style={{
+                      fontSize: baseStyle.fontSize(16),
+                      fontWeight: '400',
+                    }}>
+                    Dater
+                  </Text>
                 </Text>
               </TouchableOpacity>
             </View>
-            <Spacer isDoubleBase />
-            <Spacer isDoubleBase />
-            <Wrapper marginHorizontalLarge>
-              <Wrapper marginHorizontalLarge style={{flexDirection: 'row'}}>
-                <View
-                  style={{flex: 1, justifyContent: 'center', marginRight: 6}}>
-                  <Buttons.Colored
-                    text="Back"
-                    onPress={() => nextPageHandle(2)}
-                    textStyle={{color: '#586160'}}
-                    buttonStyle={{
-                      marginHorizontal: 0,
-                      backgroundColor: '#E7E9E9',
-                      borderWidth: 0,
-                    }}
-                  />
-                </View>
+          </Wrapper>
+          <Wrapper style={{position: 'absolute', bottom: 15}}>
+            <TouchableOpacity onPress={() => nextPageHandle(2)}>
+              <Wrapper
+                justifyContentFlexstart
+                flexDirectionRow
+                alignItemsCenter
+                marginHorizontalBase
+                marginVerticalTiny>
+                <Icon
+                  size={totalSize(3.5)}
+                  type="material-icons"
+                  name="keyboard-backspace"
+                  color={colors.snow}
+                />
+                <Text
+                  style={{
+                    fontSize: baseStyle.fontSize(16),
+                    color: colors.snow,
+                    marginLeft: 5,
+                  }}>
+                  Back
+                </Text>
               </Wrapper>
-            </Wrapper>
-            <Spacer isDoubleBase />
+            </TouchableOpacity>
           </Wrapper>
         </View>
       </ScrollView>

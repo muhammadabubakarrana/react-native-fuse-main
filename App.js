@@ -4,9 +4,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {MainNavigation} from './src/navigation/mainNavigation';
 import 'react-native-gesture-handler';
 import {navigationRef} from './src/navigation/rootNavigation';
-import {GettingFusedDater, Settings} from './src/screens/appFlow';
-import {Dropdown} from './src/components/modals';
-import Wrapper from './src/components/wrapper';
+import {Provider} from 'react-redux';
+import {store} from './src/services/redux/store';
+import {SearchDropDown} from './src/screens/appFlow';
 
 LogBox.ignoreAllLogs();
 LogBox.ignoreLogs([
@@ -15,10 +15,12 @@ LogBox.ignoreLogs([
 
 const App = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
-      <MainNavigation />
-    </NavigationContainer>
-    // <Dropdown />
+    <Provider store={store}>
+      <NavigationContainer ref={navigationRef}>
+        <MainNavigation />
+      </NavigationContainer>
+    </Provider>
+    // <SearchDropDown />
   );
 };
 

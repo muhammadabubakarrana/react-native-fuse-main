@@ -81,6 +81,10 @@ const appImages = {
   EllipseRed: require('../../../assets/images/main/ellipseRed.png'),
   SquareStar: require('../../../assets/images/main/SquareStar.png'),
   pauseAudio: require('../../../assets/images/main/pauseAudio.png'),
+  profileBg: require('../../../assets/images/main/profileBg.png'),
+  bottom: require('../../../assets/images/main/bottom.png'),
+  welcomeFusing: require('../../../assets/images/main/welcomeFusing.png'),
+
 };
 
 const appIcons = {
@@ -109,6 +113,8 @@ const appIcons = {
   pause_sharing: require('../../../assets/images/pause_sharing.png'),
   borderedHeart: require('../../../assets/images/main/borderedHeart.png'),
   doubleHeart: require('../../../assets/images/main/doubleHeart.png'),
+  HeartVector: require('../../../assets/icons/HeartVector.png'),
+
 };
 
 const appSvgs = {};

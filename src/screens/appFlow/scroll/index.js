@@ -91,11 +91,12 @@ function Scroll() {
         <TouchableOpacity
           activeOpacity={0.7}
           style={{flexDirection: 'row'}}
-          onPress={() =>
-            navigation.navigate('ScrollDetail', {
-              userDetail: item,
-            })
-          }>
+          // onPress={() =>
+          //   navigation.navigate('ScrollDetail', {
+          //     userDetail: item,
+          //   })
+          // }
+          >
           <View
             style={{justifyContent: 'center', marginHorizontal: totalSize(1)}}>
             <Image

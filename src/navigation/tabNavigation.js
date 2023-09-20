@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Platform,
   Keyboard,
+  Image,
 } from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
@@ -15,7 +16,7 @@ import {
   SparkStackNavigator,
 } from './stackNavigation';
 import {SvgIcons} from '../services/constants/svg';
-import {baseStyle, colors} from '../services';
+import {appIcons, baseStyle, colors} from '../services';
 import {Text} from '../components';
 import {totalSize, height, width} from 'react-native-dimension';
 const Tab = createBottomTabNavigator();
@@ -32,9 +33,12 @@ const CustomTabBarButton = ({onPress, accessibilityState}) => {
           styles.logoBox,
           {backgroundColor: postAddTab ? colors.appColor1 : '#E7EBEA'},
         ]}>
-        <SvgIcons.ProfileHomeIcon
+        <Image source={appIcons.HeartVector} resizeMode="contain" />
+        {/* <SvgIcons.HeartIcon
+          width={'20'}
+          height={'19'}
           fillColor={postAddTab ? '#FFF' : colors.appColor1}
-        />
+        /> */}
         <Text
           style={[
             styles.tabText,
@@ -83,20 +87,20 @@ const BottomTabNavigator = () => {
                 <View
                   style={[styles.iconStyle, focused && styles.activeIconStyle]}>
                   <SvgIcons.ScrollIcon
-                    strokeColor={focused ? '#FFF' : '#383838'}
-                    fillColor={focused ? colors.appColor1 : '#FFF'}
+                    strokeColor={focused ? '#FFF' : '#040911'}
+                    fillColor={focused ? colors.black : '#B5C6C4'}
                   />
                   {focused && (
                     <Text style={[styles.tabText, {color: '#FFF'}]}>
                       Scroll
                     </Text>
                   )}
+                  {!focused && (
+                    <Text style={[styles.tabText, {color: '#050A12'}]}>
+                      Scroll
+                    </Text>
+                  )}
                 </View>
-                {!focused && (
-                  <Text style={[styles.tabText, {color: '#B5C6C4'}]}>
-                    Scroll
-                  </Text>
-                )}
               </View>
             );
           },
@@ -114,20 +118,20 @@ const BottomTabNavigator = () => {
                 <View
                   style={[styles.iconStyle, focused && styles.activeIconStyle]}>
                   <SvgIcons.SearchTabIcon
-                    strokeColor={focused ? '#FFF' : '#383838'}
-                    fillColor={focused ? colors.appColor1 : '#FFF'}
+                    strokeColor={focused ? '#FFF' : '#040911'}
+                    fillColor={focused ? colors.black : '#B5C6C4'}
                   />
                   {focused && (
                     <Text style={[styles.tabText, {color: '#FFF'}]}>
                       Search
                     </Text>
                   )}
+                  {!focused && (
+                    <Text style={[styles.tabText, {color: '#050A12'}]}>
+                      Search
+                    </Text>
+                  )}
                 </View>
-                {!focused && (
-                  <Text style={[styles.tabText, {color: '#B5C6C4'}]}>
-                    Search
-                  </Text>
-                )}
               </View>
             );
           },
@@ -143,21 +147,22 @@ const BottomTabNavigator = () => {
               <View style={styles.tabTextMain}>
                 <View
                   style={[styles.iconStyle, focused && styles.activeIconStyle]}>
-                  <SvgIcons.ProfileHomeIcon
-                    strokeColor={focused ? '#FFF' : '#383838'}
-                    fillColor={focused ? colors.appColor1 : '#383838'}
+                  <Image
+                    tintColor={focused ? colors.snow : colors.black}
+                    source={appIcons.HeartVector}
+                    resizeMode="contain"
                   />
                   {focused && (
                     <Text style={[styles.tabText, {color: '#FFF'}]}>
                       Profile
                     </Text>
                   )}
+                  {!focused && (
+                    <Text style={[styles.tabText, {color: '#050A12'}]}>
+                      Profile
+                    </Text>
+                  )}
                 </View>
-                {!focused && (
-                  <Text style={[styles.tabText, {color: '#B5C6C4'}]}>
-                    Profile
-                  </Text>
-                )}
               </View>
             );
           },
@@ -175,16 +180,20 @@ const BottomTabNavigator = () => {
                 <View
                   style={[styles.iconStyle, focused && styles.activeIconStyle]}>
                   <SvgIcons.ChatIcon
-                    strokeColor={focused ? '#FFF' : '#383838'}
-                    fillColor={focused ? colors.appColor1 : '#FFF'}
+                    width={'18'}
+                    height={'19'}
+                    strokeColor={focused ? '#FFF' : '#040911'}
+                    fillColor={focused ? colors.black : '#B5C6C4'}
                   />
                   {focused && (
                     <Text style={[styles.tabText, {color: '#FFF'}]}>Chat</Text>
                   )}
+                  {!focused && (
+                    <Text style={[styles.tabText, {color: '#050A12'}]}>
+                      Chat
+                    </Text>
+                  )}
                 </View>
-                {!focused && (
-                  <Text style={[styles.tabText, {color: '#B5C6C4'}]}>Chat</Text>
-                )}
               </View>
             );
           },
@@ -203,17 +212,17 @@ const BottomTabNavigator = () => {
                   style={[styles.iconStyle, focused && styles.activeIconStyle]}>
                   <SvgIcons.SparkIcon
                     strokeColor={focused ? '#FFF' : '#383838'}
-                    fillColor={focused ? colors.appColor1 : '#FFF'}
+                    fillColor={focused ? colors.black : '#B5C6C4'}
                   />
                   {focused && (
                     <Text style={[styles.tabText, {color: '#FFF'}]}>Spark</Text>
                   )}
+                  {!focused && (
+                    <Text style={[styles.tabText, {color: '#050A12'}]}>
+                      Spark
+                    </Text>
+                  )}
                 </View>
-                {!focused && (
-                  <Text style={[styles.tabText, {color: '#B5C6C4'}]}>
-                    Spark
-                  </Text>
-                )}
               </View>
             );
           },
@@ -230,7 +239,7 @@ const styles = StyleSheet.create({
     bottom: height(1.5),
     left: 20,
     right: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#B5C6C4',
     height: Platform.OS === 'ios' ? 90 : 90,
     borderWidth: 0,
     zIndex: 1,
@@ -271,13 +280,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#E7EBEA',
+    //  backgroundColor: '#E7EBEA',
   },
   activeIconStyle: {
-    backgroundColor: colors.appColor1,
+    backgroundColor: colors.black,
     borderRadius: 22,
-    height: baseStyle.height(74),
-    width: baseStyle.width(65),
+    height: 74,
+    width: 65,
     alignItems: 'center',
     justifyContent: 'center',
   },

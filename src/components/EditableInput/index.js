@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import {Icon} from '@rneui/base';
 import * as TextInputs from '../textInput';
-import {appStyles, colors, fontSize} from '../../services';
+import {appStyles, baseStyle, colors, fontSize} from '../../services';
 import {totalSize, height, width} from 'react-native-dimension';
 
 const EditableTextInput = ({title, initialValue}) => {
@@ -51,23 +51,25 @@ const EditableTextInput = ({title, initialValue}) => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     padding: 0,
   },
   inputContainer: {
-    backgroundColor: colors.snow,
+    backgroundColor: colors.appTextColor11,
     borderRadius: 8,
     paddingLeft: width(1.3),
+    borderWidth: 1,
+    borderColor: '#4A5458',
   },
   input: {
-    fontSize: fontSize.input,
-    color: colors.black,
+    fontSize: baseStyle.fontSize(16),
+    lineHeight: baseStyle.lineHight(22),
+    color: colors.snow,
   },
   title: {
     marginTop: height(1),
-    color: colors.black,
+    color: '#B5C6C4',
   },
 });
 

@@ -9,12 +9,19 @@ import {
   FlatList,
   Keyboard,
   Platform,
-  KeyboardAvoidingView,
-  Pressable,
+  AppState,
+  BackHandler,
 } from 'react-native';
 import {Icon} from '@rneui/base';
 import {height, totalSize, width} from 'react-native-dimension';
-import {colors, sizes, appStyles, HelpingMethods} from '../../services';
+import {
+  colors,
+  sizes,
+  appStyles,
+  HelpingMethods,
+  baseStyle,
+  fontFamily,
+} from '../../services';
 import Modal from 'react-native-modal';
 import {styles} from './styles';
 import * as Lines from '../lines';
@@ -27,7 +34,7 @@ import * as Buttons from '../buttons';
 import * as Common from '../common';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import DatePicker from 'react-native-date-picker';
-import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
+import CountDown from 'react-native-countdown-component';
 
 export const Swipable = ({
   children,
@@ -640,25 +647,152 @@ export const OptionsPopupPrimary = ({
   );
 };
 
-// export const Dropdown = ({visible, toggle}) => {
-//   //const [visible, setVisible] = useState(false);
+export const SettingsModal = ({
+  visible,
+  toggle,
+  title,
+  btnText,
+  onPress,
+  textStlyle,
+  notPaused,
+}) => {
+  return (
+    <Modal
+      // animationIn={'slideInUp'}
+      // animationInTiming={'800'}
+      // animationOutTiming={'300'}
+      animationOut={'slideOutDown'}
+      isVisible={visible}
+      toggle={toggle}>
+      <Wrapper
+        paddingVerticalLarge
+        paddingHorizontalSmall
+        isCardView
+        style={{backgroundColor: notPaused ? colors.appBgColor14 : '#B5C6C4'}}>
+        <Text
+          style={[
+            {
+              fontSize: baseStyle.fontSize(32),
+              color: colors.black,
+              fontWeight: 900,
+              textAlign: 'center',
+            },
+            textStlyle,
+          ]}>
+          {title}
+        </Text>
+        <Spacer isBasic />
+        {notPaused && <Buttons.Colored onPress={onPress} text={btnText} />}
+        {!notPaused && (
+          <Wrapper justifyContentCenter flexDirectionRow alignItemsCenter>
+            <Buttons.Bordered
+              onPress={onPress}
+              textStyle={{
+                fontSize: baseStyle.fontSize(16),
+                color: colors.black,
+              }}
+              buttonStyle={{borderWidth: 0}}
+              text={'Cancel'}
+            />
+            <Buttons.Colored
+              onPress={onPress}
+              buttonStyle={{
+                paddingHorizontal: baseStyle.paddingHorizontal(30),
+                marginHorizontal: 0,
+              }}
+              textStyle={{
+                fontSize: baseStyle.fontSize(16),
+              }}
+              text={'Remove'}
+            />
+          </Wrapper>
+        )}
+      </Wrapper>
+    </Modal>
+  );
+};
 
-//   // const hideMenu = () => setVisible(false);
+export const DeleteCounterModal = ({visible, toggle, onPress}) => {
+  return (
+    <Modal
+      // animationIn={'slideInUp'}
+      // animationInTiming={'800'}
+      // animationOutTiming={'300'}
+      animationOut={'slideOutDown'}
+      isVisible={visible}
+      toggle={toggle}>
+      <Wrapper
+        style={{
+          //  justifyContent: 'center',
+          //height: Dimensions.get('window').height / 2,
+          backgroundColor: colors.appBgColor14,
+        }}>
+        <Wrapper paddingHorizontalBase>
+          <Spacer isBasic />
+          {/* Back */}
+          <TouchableOpacity
+            style={{
+              marginVertical: baseStyle.marginVertical(10),
+              backgroundColor: colors.snow,
+              borderRadius: 100,
+              alignItems: 'center',
+              width: 45,
+              height: 45,
+              justifyContent: 'center',
+            }}
+            onPress={toggle}>
+            <Icon
+              size={totalSize(3.5)}
+              type="material-icons"
+              name="keyboard-backspace"
+            />
+          </TouchableOpacity>
+          <Spacer isTiny />
 
-//   // const showMenu = () => setVisible(true);
+          <Text
+            style={{
+              fontSize: baseStyle.fontSize(42),
+              fontWeight: 900,
+              color: colors.black,
+            }}>
+            Delete{`\n`}Account
+          </Text>
+          <Spacer isBasic />
+          <Text
+            style={{
+              fontSize: baseStyle.fontSize(16),
+              fontWeight: 400,
+              color: colors.black,
+              //fontfamily: fontFamily.appTextRegular,
+            }}>
+            Your account will be deleted in:
+          </Text>
+          <Spacer isBasic />
+          <CountDown
+            onPress={() => console.log('hello')}
+            onFinish={() => console.log('a')}
+            until={604800} // 7 days in seconds
+            size={30}
+            digitStyle={{backgroundColor: colors.appTextColor9}}
+            digitTxtStyle={{
+              color: colors.snow,
+              fontSize: baseStyle.fontSize(20),
+              // fontFamily: fontFamily.appTextRegular,
+            }}
+            timeToShow={['D', 'H', 'M', 'S']} // Display days, hours, minutes, and seconds
+            timeLabels={{d: 'Days', h: 'Hours', m: 'Minutes', s: 'Seconds'}}
+          />
+          <Spacer isBasic />
+        </Wrapper>
+        {/* button */}
 
-//   return (
-//     // <View style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-//     <Menu
-//       visible={visible}
-//       // anchor={<Text onPress={showMenu}>Show menu</Text>}
-//       onRequestClose={toggle}>
-//       <MenuItem>Menu item 1</MenuItem>
-//       <MenuItem>Menu item 2</MenuItem>
-//       <MenuItem>Disabled item</MenuItem>
-//       <MenuDivider />
-//       <MenuItem>Menu item 4</MenuItem>
-//     </Menu>
-//     // </View>
-//   );
-// };
+        <Buttons.Colored
+          buttonStyle={{backgroundColor: colors.appTextColor9}}
+          onPress={onPress}
+          text={'Cancel'}
+        />
+        <Spacer isBasic />
+      </Wrapper>
+    </Modal>
+  );
+};

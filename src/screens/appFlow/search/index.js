@@ -9,7 +9,7 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import {Modals, Text, Wrapper} from '../../../components';
+import {Modals, Text, TextInputs, Wrapper} from '../../../components';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {height, totalSize} from 'react-native-dimension';
 import {useNavigation} from '@react-navigation/native';
@@ -103,14 +103,14 @@ function Search() {
         </View>
         <View style={{flexDirection: 'row', marginTop: totalSize(0.8)}}>
           <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text style={{color: '#3F3F46', fontSize: 14, fontWeight: '400'}}>
+            <Text style={{color: colors.snow, fontSize: 14, fontWeight: '400'}}>
               {item?.title}
             </Text>
           </View>
           <TouchableOpacity
             onPress={() => showMenu(item.id)}
             style={{justifyContent: 'center'}}>
-            <SvgIcons.DotIconHorizontal />
+            <SvgIcons.DotIconHorizontal width="15" height="15" />
             {/* DropDown Menu */}
             {isMenuVisible === item.id && (
               <Menu
@@ -159,30 +159,21 @@ function Search() {
 
   return (
     <>
-      <Wrapper isMain style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-        <CustomStatusBar barStyle={'dark'} backgroundColor={'#FFFFFF'} />
+      <Wrapper isMain style={{flex: 1, backgroundColor: colors.appTextColor11}}>
+        <CustomStatusBar
+          barStyle={'light'}
+          backgroundColor={colors.appTextColor11}
+        />
         <ScrollView>
           <Wrapper marginHorizontalBase marginVerticalBase>
-            <Text style={{color: '#586160', fontSize: 14, fontWeight: '400'}}>
-              Search by Phone Number
-            </Text>
-            <Spacer isBasic />
-            <Wrapper
-              style={{
-                flexDirection: 'row',
-                borderColor: '#DEE1E1',
-                borderWidth: 1,
-                padding: totalSize(1),
-                borderRadius: 8,
-              }}>
-              <Wrapper style={{flex: 1}}>
-                <TextInput placeholder="" style={{padding: 0}} />
-              </Wrapper>
-              <SvgIcons.SearchTabIcon
-                strokeColor={'#383838'}
-                fillColor={'#FFF'}
-              />
-            </Wrapper>
+            <TextInputs.Underlined
+              placeholder={'Search'}
+              iconNameRight={'search'}
+              iconTypeRight={'feather'}
+              iconColorRight={colors.snow}
+              placeholderTextColor={colors.snow}
+              inputStyle={{color: colors.snow}}
+            />
           </Wrapper>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {tabData?.map((val, key) => {
@@ -192,16 +183,21 @@ function Search() {
                   onPress={() => setActivetab(key)}
                   style={{
                     backgroundColor:
-                      activeTab === key ? '#383838' : 'transparent',
+                      activeTab === key ? colors.appColor1 : 'transparent',
                     marginLeft: key === 0 ? totalSize(2) : 0,
-                    marginRight: tabData?.length - 1 === key ? totalSize(2) : 0,
+                    marginRight:
+                      tabData?.length - 1 === key
+                        ? totalSize(2)
+                        : baseStyle.marginRight(11),
                     borderRadius: 100,
+                    borderWidth: 1,
+                    borderColor: '#4A5458',
                     paddingVertical: totalSize(1),
                     paddingHorizontal: totalSize(1.5),
                   }}>
                   <Text
                     style={{
-                      color: activeTab === key ? '#FFF' : '#383838',
+                      color: activeTab === key ? '#FFF' : '#B5C6C4',
                       fontSize: 14,
                       fontWeight: '400',
                       textAlign: 'center',

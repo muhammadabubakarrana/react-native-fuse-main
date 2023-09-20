@@ -12,6 +12,7 @@ import {
   CustomStatusBar,
 } from '../../../components';
 import {
+  Dimensions,
   Image,
   ImageBackground,
   StyleSheet,
@@ -20,87 +21,155 @@ import {
 } from 'react-native';
 //import {useNavigation} from '@react-navigation/native';
 import {
-  appIcons,
   appImages,
   appStyles,
   appSvgs,
+  baseStyle,
   colors,
+  routes,
   sizes,
 } from '../../../services';
 import {totalSize, height, width} from 'react-native-dimension';
 import {CustomHeader} from '../../../components/headers/customHeader';
 import {Icon} from '@rneui/themed';
 import SwitchSelector from 'react-native-switch-selector';
-import {goBack} from '../../../navigation/rootNavigation';
+import {goBack, navigate} from '../../../navigation/rootNavigation';
 
 const ProfileScreen = () => {
   // const navigation = useNavigation();
   // const {profileImage} = props.route.params;
-  const profileImage = appImages.RectangleNine;
+  const [notificationEnable, setNotificationEnable] = useState(false);
   const [mode, setMode] = useState('General');
 
   return (
-    <Wrapper isMain style={{flex: 1, backgroundColor: colors.appBgColor9}}>
+    <Wrapper isMain style={{flex: 1, backgroundColor: colors.appTextColor11}}>
       <CustomStatusBar barStyle={'dark'} backgroundColor={'#FFFFFF'} />
       <StatusBars.Dark />
       <ScrollViews.KeyboardAvoiding>
-        <View style={{position: 'relative', alignItems: 'center'}}>
+        <View>
           <ImageBackground
-            style={{height: height(27), width: '100%', resizeMode: 'cover'}}
-            source={appImages.EllipseRed}>
+            resizeMode="cover"
+            style={{
+              height: Dimensions.get('window').height / 2,
+              width: Dimensions.get('window').width,
+            }}
+            source={appImages.profileBg}>
             <Wrapper
-              style={{}}
+              //   style={{}}
               marginVerticalBase
               marginHorizontalBase
               flexDirectionRow
               alignItemsCenter
               justifyContentSpaceBetween>
-              <TouchableOpacity onPress={goBack}>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: colors.appTextColor11,
+                  borderRadius: 100,
+                  alignItems: 'center',
+                  width: 45,
+                  height: 45,
+                  justifyContent: 'center',
+                }}
+                onPress={goBack}>
                 <Icon
-                  size={totalSize(5)}
-                  type="material-community"
-                  name="arrow-left"
+                  size={totalSize(3.5)}
+                  type="material-icons"
+                  name="keyboard-backspace"
                   color={colors.snow}
                 />
               </TouchableOpacity>
-              <Image source={appImages.SquareStar} resizeMode="contain" />
+              <TouchableOpacity
+                //onPress={() => navigate(routes.settings)}
+                style={{
+                  backgroundColor: colors.appTextColor11,
+                  borderRadius: 100,
+                  alignItems: 'center',
+                  width: 45,
+                  height: 45,
+                  justifyContent: 'center',
+                }}>
+                <Icon
+                  type="material-community"
+                  name="cog-outline"
+                  color={colors.appBgColor3}
+                  size={totalSize(3.5)}
+                />
+              </TouchableOpacity>
             </Wrapper>
           </ImageBackground>
-          <View style={{position: 'absolute', bottom: -60}}>
-            <View
-              style={{
-                height: 180,
-                width: 180,
-                borderRadius: 100,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#f8f9f9',
-              }}>
-              <Image
-                source={
-                  profileImage === null
-                    ? appImages.China
-                    : {uri: appImages.user5}
-                }
-                style={{
-                  height: 150,
-                  width: 150,
-                  borderRadius: 100,
-                  resizeMode: 'cover',
-                }}
-              />
-            </View>
-          </View>
         </View>
-        <Spacer isDoubleBase />
-        <Spacer isBasic />
+
         {/* Profile Name */}
-        <Wrapper marginHorizontalBase marginVerticalBase>
-          <Text isTinyTitle style={{color: colors.black}} alignTextCenter>
-            Amy Willison
+        <Wrapper marginHorizontalBase marginVerticalSmall>
+          <Text
+            style={{
+              color: colors.snow,
+              fontSize: baseStyle.fontSize(42),
+              fontWeight: 800,
+            }}>
+            Michael Wawrick
           </Text>
         </Wrapper>
-        <Spacer isTiny />
+
+        {/* Selectors */}
+        {/* <Wrapper marginVerticalMedium>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => setNotificationEnable(false)}
+              style={{
+                marginRight: baseStyle.marginRight(16),
+                justifyContent: 'center',
+                paddingHorizontal: totalSize(1.4),
+                paddingVertical: totalSize(1),
+                borderWidth: 1,
+                borderColor: '#4A5458',
+                borderRadius: 100,
+                backgroundColor: !notificationEnable
+                  ? colors.appColor1
+                  : 'transparent',
+              }}>
+              <Text
+                style={{
+                  color: colors.snow,
+                  fontSize: baseStyle.fontSize(16),
+                  fontWeight: '400',
+                  textAlign: 'center',
+                }}>
+                My Fusers
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => setNotificationEnable(true)}
+              style={{
+                //flex: 1,
+                justifyContent: 'center',
+                paddingHorizontal: totalSize(1.3),
+                paddingVertical: totalSize(1),
+                borderWidth: 1,
+                borderColor: '#4A5458',
+                borderRadius: 100,
+                backgroundColor: notificationEnable
+                  ? colors.appColor1
+                  : 'transparent',
+              }}>
+              <Text
+                style={{
+                  color: colors.snow,
+                  fontSize: baseStyle.fontSize(16),
+                  fontWeight: '400',
+                  textAlign: 'center',
+                }}>
+                Boost Profile
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </Wrapper> */}
+
         {/* Selector Switch */}
         <Wrapper marginHorizontalBase>
           <SwitchSelector
@@ -108,25 +177,42 @@ const ProfileScreen = () => {
               {
                 label: 'General',
                 value: 'General',
-                activeColor: colors.appTextColor10,
+                activeColor: colors.appColor1,
               },
               {
                 label: 'Photos',
                 value: 'Photos',
-                activeColor: colors.appTextColor10,
+                activeColor: colors.appColor1,
               },
               {
                 label: 'Prompts',
                 value: 'Prompts',
-                activeColor: colors.appTextColor10,
+                activeColor: colors.appColor1,
               },
             ]}
+            borderColor={colors.snow}
+            // borderRadius={1}
             initial={0}
+            buttonMargin={4}
             style={styles.switch}
             selectedTextColor={colors.snow}
-            textStyle={[appStyles.textLarge, {color: colors.black}]}
-            backgroundColor={colors.snow}
+            textStyle={{color: colors.snow, fontSize: baseStyle.fontSize(16)}}
+            backgroundColor={colors.appTextColor11}
             onPress={value => setMode(value)}
+            textContainerStyle={{
+              borderWidth: 1,
+              borderColor: '#4A5458',
+              borderRadius: 50,
+              paddingVertical: 8,
+              marginHorizontal: 5,
+            }}
+            selectedTextContainerStyle={{
+              marginHorizontal: 5,
+            }}
+            selectedTextStyle={{
+              color: colors.snow,
+              fontSize: baseStyle.fontSize(16),
+            }}
           />
         </Wrapper>
 
@@ -139,17 +225,15 @@ const ProfileScreen = () => {
         ) : null}
       </ScrollViews.KeyboardAvoiding>
       <Spacer isDoubleBase />
-      <Spacer isDoubleBase />
-      <Spacer isDoubleBase />
     </Wrapper>
   );
 };
 
 const styles = StyleSheet.create({
   switch: {
-    borderColor: colors.black,
-    borderWidth: 1,
-    borderRadius: totalSize(50),
+    // borderColor: colors.snow,
+    // borderWidth: 1,
+    //borderRadius: totalSize(50),
   },
 });
 

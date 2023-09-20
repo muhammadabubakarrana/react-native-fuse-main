@@ -8,14 +8,15 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {Text, Wrapper} from '../../../components';
+import {Text, TextInputs, Wrapper} from '../../../components';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {SvgIcons} from '../../../services/constants/svg';
 import {height, totalSize} from 'react-native-dimension';
 import {useNavigation} from '@react-navigation/native';
-import {baseStyle, sizes} from '../../../services';
+import {baseStyle, colors, sizes} from '../../../services';
 import Carousel from 'react-native-snap-carousel';
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
+import {Icon} from '@rneui/base';
 
 const dropdownData = [
   {id: '2', name: 'Inbox'},
@@ -44,8 +45,8 @@ function Chat() {
           onPress={() => setDropdownActive(!dropdownActive)}
           style={{
             flexDirection: 'row',
-            backgroundColor: '#B5C6C41A',
-            borderBottomColor: '#DEE1E1',
+            backgroundColor: colors.black,
+            //borderBottomColor: '#DEE1E1',
             borderBottomWidth: dropdownActive ? 1 : 0,
             borderBottomLeftRadius: dropdownActive ? 0 : 24,
             borderBottomRightRadius: dropdownActive ? 0 : 24,
@@ -55,26 +56,44 @@ function Chat() {
             paddingHorizontal: totalSize(2),
           }}>
           <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text style={{color: '#3F3F46', fontSize: 10, fontWeight: '400'}}>
+            <Text
+              style={{
+                color: '#B5C6C4',
+                fontSize: baseStyle.fontSize(12),
+                fontWeight: '400',
+              }}>
               Chat with
             </Text>
-            <Text style={{color: '#3F3F46', fontSize: 14, fontWeight: '400'}}>
+            <Text
+              style={{
+                color: colors.snow,
+                fontSize: baseStyle.fontSize(16),
+                fontWeight: '900',
+              }}>
               {chatType}
             </Text>
           </View>
           <View style={{justifyContent: 'center'}}>
-            <SvgIcons.DropdownRedIcon />
+            <Icon type="feather" name="chevron-down" color={'#B5C6C4'} />
           </View>
         </TouchableOpacity>
         {dropdownActive && (
           <View
             style={{
-              backgroundColor: '#B5C6C41A',
+              backgroundColor: colors.black,
               paddingVertical: totalSize(1),
               borderBottomLeftRadius: 24,
               borderBottomRightRadius: 24,
               paddingHorizontal: totalSize(2),
             }}>
+            {/* <Text
+              style={{
+                color: '#B5C6C4',
+                fontSize: baseStyle.fontSize(12),
+                fontWeight: '400',
+              }}>
+              Chat With
+            </Text> */}
             {dropdownData?.map((val, key) => {
               return (
                 <TouchableOpacity
@@ -88,9 +107,9 @@ function Chat() {
                   <View style={{flex: 1, justifyContent: 'center'}}>
                     <Text
                       style={{
-                        color: '#3F3F46',
-                        fontSize: 14,
-                        fontWeight: '400',
+                        color: colors.snow,
+                        fontSize: baseStyle.fontSize(16),
+                        fontWeight: '900',
                       }}>
                       {val?.name}
                     </Text>
@@ -101,23 +120,17 @@ function Chat() {
           </View>
         )}
         <Spacer isBasic />
-        <Wrapper
-          style={{
-            flexDirection: 'row',
-            borderColor: '#DEE1E1',
-            borderWidth: 1,
-            padding: totalSize(1),
-            borderRadius: 8,
-          }}>
-          <Wrapper style={{flex: 1}}>
-            <TextInput
-              style={{padding: 0}}
-              placeholder="Search Chat"
-              placeholderTextColor="#586160"
+        {chatType === 'New Fuses' ? null : (
+          <Wrapper style={{}}>
+            <TextInputs.Underlined
+              placeholder={'Search Chat'}
+              iconNameRight={'search'}
+              iconTypeRight={'feather'}
+              iconColorRight={colors.black}
+              placeholderTextColor={colors.black}
             />
           </Wrapper>
-          <SvgIcons.SearchTabIcon strokeColor={'#383838'} fillColor={'#FFF'} />
-        </Wrapper>
+        )}
       </Wrapper>
       {chatType === 'New Fuses' ? (
         <Wrapper marginHorizontalBase marginVerticalBase>
@@ -237,7 +250,7 @@ function Chat() {
                   flex: 0.2,
                   alignItems: 'flex-end',
                 }}>
-                <SvgIcons.DotIconHorizontal />
+                <Icon type="material-community" name="dots-horizontal" />
               </TouchableOpacity>
               {
                 <Menu
@@ -245,16 +258,17 @@ function Chat() {
                     width: 'auto',
                     paddingHorizontal: baseStyle.paddingHorizontal(5),
                     paddingVertical: baseStyle.paddingVertical(5),
+                    backgroundColor: colors.black,
                   }}
                   visible={isMenuVisible}
                   onRequestClose={hideMenu}>
                   <MenuItem onPress={hideMenu}>
-                    <Text isMedium isTextColor2>
+                    <Text isMedium isWhite>
                       Delete
                     </Text>
                   </MenuItem>
                   <MenuItem onPress={hideMenu}>
-                    <Text isMedium isTextColor2>
+                    <Text isMedium isWhite>
                       Report
                     </Text>
                   </MenuItem>
@@ -329,7 +343,7 @@ function Chat() {
                   flex: 0.2,
                   alignItems: 'flex-end',
                 }}>
-                <SvgIcons.DotIconHorizontal />
+                <Icon type="material-community" name="dots-horizontal" />
               </TouchableOpacity>
             </Wrapper>
           </TouchableOpacity>
@@ -404,7 +418,7 @@ function Chat() {
                   flex: 0.2,
                   alignItems: 'flex-end',
                 }}>
-                <SvgIcons.DotIconHorizontal />
+                <Icon type="material-community" name="dots-horizontal" />
               </TouchableOpacity>
             </Wrapper>
           </TouchableOpacity>
@@ -481,7 +495,7 @@ function Chat() {
                   flex: 0.2,
                   alignItems: 'flex-end',
                 }}>
-                <SvgIcons.DotIconHorizontal />
+                <Icon type="material-community" name="dots-horizontal" />
               </TouchableOpacity>
             </Wrapper>
           </TouchableOpacity>

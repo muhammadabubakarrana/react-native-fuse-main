@@ -22,10 +22,12 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {CountryPicker} from 'react-native-country-codes-picker';
-import {baseStyle, fontFamily} from '../../../services';
+import {baseStyle, colors, fontFamily} from '../../../services';
+import {Icon} from '@rneui/base';
+import {goBack} from '../../../navigation/rootNavigation';
 
 const CodeVerification = props => {
-  const {choice} = props.route.params;
+  // const {choice} = props.route.params;
   const navigation = useNavigation();
   const [countryCode, setCountryCode] = useState('');
   const [countryFlag, setCountryFlag] = useState('🇨🇦');
@@ -44,38 +46,49 @@ const CodeVerification = props => {
   const [codeSix, setCodeSix] = useState('');
 
   const navigateToSpecificScreen = () => {
-    if (choice === 'matchMaker') {
-      navigation.navigate('BottomTab');
-    } else if (choice === 'dater') {
-      navigation.navigate('GetStarted');
-    } else if (choice === 'a') {
-      navigation.navigate('OnBoarding', {goToGetStarted: 'getStarted'});
-    }
+    // if (choice === 'matchMaker') {
+    //   navigation.navigate('BottomTab');
+    // } else if (choice === 'dater') {
+    //   navigation.navigate('GetStarted');
+    // } else if (choice === 'a') {
+    //   navigation.navigate('OnBoarding', {goToGetStarted: 'getStarted'});
+    // }
+    console.log('CodeVerification');
   };
 
   return (
     <Wrapper
       isMain
       style={{
-        flex: 1,
-        backgroundColor: '#F8F9F9',
-        justifyContent: 'center',
+        //flex: 1,
+        backgroundColor: colors.appBgColor14,
+        // justifyContent: 'center',
         // alignItems: 'center',
       }}>
-      <CustomStatusBar barStyle={'dark'} backgroundColor={'#F8F9F9'} />
-      <Wrapper marginHorizontalBase>
+      <CustomStatusBar barStyle={'dark'} backgroundColor={'#ffff'} />
+      <Wrapper flex={1} justifyContentCenter marginHorizontalBase>
+        {/* Back */}
+        <TouchableOpacity
+          style={{
+            marginVertical: baseStyle.marginVertical(10),
+            backgroundColor: colors.snow,
+            borderRadius: 100,
+            alignItems: 'center',
+            width: 45,
+            height: 45,
+            justifyContent: 'center',
+            position: 'absolute',
+            top: 20,
+            left: 15,
+          }}
+          onPress={goBack}>
+          <Icon
+            size={totalSize(3.5)}
+            type="material-icons"
+            name="keyboard-backspace"
+          />
+        </TouchableOpacity>
         <Wrapper marginHorizontalBase alignItemsCenter>
-          <Text
-            style={{
-              color: '#586160',
-              fontSize: baseStyle.fontSize(14),
-              fontWeight: '400',
-              textAlign: 'center',
-              lineHeight: 22.4,
-            }}>
-            Check your mss we have sent you{`\n`}verification code
-          </Text>
-          <Spacer isBasic />
           <Text
             style={{
               fontSize: baseStyle.fontSize(30),
@@ -87,51 +100,17 @@ const CodeVerification = props => {
           </Text>
           <Spacer isBasic />
           <Spacer isBasic />
-          <View
-            style={{
-              flexDirection: 'row',
-              borderColor: '#DEE1E1',
-              borderWidth: 1,
-              borderRadius: 8,
-              paddingVertical: totalSize(1),
-              paddingHorizontal: totalSize(1.4),
-            }}>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={() => setShow(!show)}
-              style={{
-                justifyContent: 'center',
-                borderRightColor: '#DEE1E1',
-                borderRightWidth: 1,
-                paddingRight: totalSize(1),
-              }}>
-              <Text style={{fontSize: baseStyle.fontSize(20)}}>
-                {countryFlag}
-              </Text>
-            </TouchableOpacity>
-            <View style={{flex: 1, justifyContent: 'center'}}>
-              <TextInputs.Colored
-                placeholder={'(706) 941-6346'}
-                containerStyle={{marginHorizontal: 0}}
-                inputStyle={{
-                  padding: 0,
-                  height: 'auto',
-                  paddingHorizontal: totalSize(1),
-                }}
-              />
-            </View>
-          </View>
-          <Spacer isBasic />
           <Text
-            onPress={() => console.log('PRESS')}
             style={{
-              fontSize: baseStyle.fontSize(14),
+              color: '#383838',
+              fontSize: baseStyle.fontSize(16),
               fontWeight: '400',
               textAlign: 'center',
+              lineHeight: 22.4,
             }}>
-            <Text style={{color: '#586160'}}>Didn’t get it?</Text>
-            <Text style={{color: '#383838'}}>{' Resend Code'}</Text>
+            Check your mss we have sent you{`\n`}verification code
           </Text>
+
           <Spacer isDoubleBase />
           <Wrapper flexDirectionRow justifyContentCenter alignItemsCenter>
             <TextInput
@@ -208,6 +187,19 @@ const CodeVerification = props => {
               onPress={navigateToSpecificScreen}
             />
           </View>
+          <Spacer isBasic />
+          <Text
+            onPress={() => console.log('PRESS')}
+            style={{
+              fontSize: baseStyle.fontSize(14),
+              fontWeight: '400',
+              textAlign: 'center',
+            }}>
+            <Text style={{color: '#383838'}}>Didn’t get it?</Text>
+            <Text style={{fontWeight: '800', color: '#383838'}}>
+              {'  Resend Code'}
+            </Text>
+          </Text>
         </Wrapper>
       </Wrapper>
       <CountryPicker

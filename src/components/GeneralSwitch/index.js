@@ -45,7 +45,7 @@ const GeneralSwitch = () => {
           iconNameRight={'pencil'}
         />
       </Wrapper> */}
-      <Wrapper style={{width: '90%'}}>
+      {/* <Wrapper style={{width: '90%'}}>
         <Text style={styles.title} isMedium>
           Consume
         </Text>
@@ -83,7 +83,7 @@ const GeneralSwitch = () => {
             </Text>
           </Wrapper>
         </Wrapper>
-      </Wrapper>
+      </Wrapper> */}
     </Wrapper>
   );
 };

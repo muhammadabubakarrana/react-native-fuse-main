@@ -21,6 +21,7 @@ export const colors = {
   drawer: 'rgba(30, 30, 29, 0.95)',
   eggplant: '#251a34',
   border: '#483F53',
+  border1: '#4A5458',
   banner: '#5F3E63',
   simpletext: 'gray',
   black: '#000000',
@@ -59,6 +60,7 @@ export const colors = {
   appTextColor8: '#000000',
   appTextColor9: '#383838',
   appTextColor10: '#3F3F46',
+  appTextColor11: '#030810',
 
   appBgColor1: '#FFFFFF',
   appBgColor2: '#F8F8F8',
@@ -70,4 +72,8 @@ export const colors = {
   appBgColor8: '#4FD7A6', //#F8F9F9
   appBgColor9: '#F8F9F9', //#DEE1E1
   appBgColor10: '#DEE1E1', //#DEE1E1
+  appBgColor11: '#040911', //#B5C6C4
+  appBgColor12: '#B5C6C4',
+  appBgColor13: '#D0D8D6',//#E0E7E6
+  appBgColor14: '#E0E7E6',//
 };

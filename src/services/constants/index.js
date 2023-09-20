@@ -23,10 +23,22 @@ export const routes = {
   eventSpotLight: 'eventSpotLight',
   destination: 'destination',
   locationBlast: 'locationBlast',
-  captainpage: 'CaptainsPage',
+  delAccount: 'DeleteAccount',
   settings: 'Settings',
   profileScreen: 'ProfileScreen',
-  teamForFusers: "TeamForFusers"
+  delAccountconter: 'DeleteAccountCounter',
+  PauseAccount: 'PauseAccount',
+  TermsAndServices: 'TermsAndServices',
+  PrivacyPolicy: 'PrivacyPolicy',
+  Notifications: 'Notifications',
+  SwitchProfile: 'SwitchProfile',
+  fusingMatchMakerProfileHome: 'fusingMatchMakerProfileHome',
+  GettingFusedDaterProfileHome: 'GettingFusedDaterProfileHome',
+  ChoseWhoFuse: 'ChoseWhoFuse',
+  ScrollDetail: 'ScrollDetail',
+  SwitchProfileScroll: 'SwitchProfileScroll',
+  SearchDropDown: 'SearchDropDown',
+  SearchStack: 'SearchStack',
 };
 export const headers = {
   screenOptions: {

@@ -23,106 +23,122 @@ const ForgotPassword = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <Wrapper
-      isMain
-      style={{flex: 1, backgroundColor: '#F8F9F9', justifyContent: 'center'}}>
-      <CustomStatusBar barStyle={'dark'} backgroundColor={'#F8F9F9'} />
-      <Wrapper marginHorizontalBase marginVerticalBase alignItemsCenter>
-        <Text
-          style={{
-            fontSize: baseStyle.fontSize(30),
-            fontWeight: '900',
-            color: '#383838',
-          }}>
-          Forgot Password
-        </Text>
-        <Spacer isBasic />
-        <Text
-          style={{
-            color: '#586160',
-            fontSize: baseStyle.fontSize(14),
-            fontWeight: '400',
-            textAlign: 'center',
-            lineHeight: baseStyle.fontSize(22.4),
-          }}>
-          Text about how you will receive email{`\n`}where you can reset your
-          password
-        </Text>
-      </Wrapper>
-      <Spacer isBasic />
-      <Wrapper marginHorizontalBase>
-        <Wrapper marginHorizontalLarge>
-          <TextInputs.Colored
-            title={'Email'}
-            placeholder={''}
-            containerStyle={{marginHorizontal: 0, width: '100%'}}
-            inputStyle={{
-              backgroundColor: '#FFF',
-              borderColor: '#DEE1E1',
-              borderWidth: 1,
-              borderRadius: 8,
-            }}
-          />
-          <Spacer isDoubleBase />
-          <Buttons.Colored
-            text="Reset Password"
-            buttonStyle={{marginHorizontal: 0}}
-            onPress={() => setModalVisible(true)}
-          />
-        </Wrapper>
-        <Spacer isDoubleBase />
-      </Wrapper>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={() => navigation.navigate('SignIn')}
-        style={{position: 'absolute', left: 0, right: 0, bottom: totalSize(3)}}>
-        <Text
-          style={{
-            color: '#6C7473',
-            fontSize: baseStyle.fontSize(14),
-            fontWeight: '400',
-            textAlign: 'center',
-          }}>
-          Back To Login
-        </Text>
-      </TouchableOpacity>
-      <Modal
-        animationIn={'fadeIn'}
-        animationOut={'fadeOut'}
-        isVisible={modalVisible}
-        backdropColor={'#3F3F46B2'}
-        onBackdropPress={() => {}}>
-        <View
-          style={{
-            backgroundColor: '#FFF',
-            paddingHorizontal: totalSize(6),
-            paddingVertical: totalSize(4),
-            borderRadius: 20,
-          }}>
+    <>
+      <CustomStatusBar
+        barStyle={'dark'}
+        backgroundColor={colors.appBgColor14}
+      />
+      <Wrapper
+        isMain
+        style={{
+          flex: 1,
+          backgroundColor: colors.appBgColor14,
+          justifyContent: 'center',
+        }}>
+        <Wrapper marginHorizontalBase marginVerticalBase alignItemsCenter>
           <Text
             style={{
-              color: '#3F3F46',
+              fontSize: baseStyle.fontSize(30),
+              fontWeight: '900',
+              color: '#383838',
+            }}>
+            Forgot Password
+          </Text>
+          <Spacer isBasic />
+          <Text
+            style={{
+              color: '#383838',
               fontSize: baseStyle.fontSize(14),
               fontWeight: '400',
               textAlign: 'center',
               lineHeight: baseStyle.fontSize(22.4),
             }}>
-            Password Reset link sent on email hello@email.com, please check your
-            email to reset the password
+            Text about how you will receive email{`\n`}where you can reset your
+            password
           </Text>
-          <Spacer isBasic />
-          <Spacer isBasic />
-          <Buttons.Colored
-            text="Back to Login"
-            buttonStyle={{marginHorizontal: 0}}
-            onPress={() => {
-              setModalVisible(false);
-              navigation.navigate('SignIn');
-            }}
-          />
-        </View>
-      </Modal>
-    </Wrapper>
+        </Wrapper>
+        <Spacer isBasic />
+        <Wrapper marginHorizontalMedium>
+          <Wrapper>
+            <TextInputs.Colored
+              titleStyle={{
+                fontSize: baseStyle.fontSize(16),
+                fontWeight: '400',
+                lineHeight: baseStyle.lineHight(16.94),
+                color: '#383838',
+              }}
+              title={'Email'}
+              placeholder={'hello@inkyy.com'}
+              placeholderTextColor={colors.black}
+              containerStyle={{marginHorizontal: 0, width: '100%'}}
+              inputContainerStyle={{backgroundColor: '#FFF', borderRadius: 8}}
+            />
+            <Spacer isDoubleBase />
+            <Buttons.Colored
+              text="Reset Password"
+              buttonStyle={{marginHorizontal: 0}}
+              onPress={() => setModalVisible(true)}
+            />
+          </Wrapper>
+          <Spacer isDoubleBase />
+        </Wrapper>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('SignIn')}
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: totalSize(3),
+          }}>
+          <Text
+            style={{
+              color: '#383838',
+              fontSize: baseStyle.fontSize(14),
+              fontWeight: '400',
+              textAlign: 'center',
+            }}>
+            Back To Login
+          </Text>
+        </TouchableOpacity>
+        <Modal
+          animationIn={'fadeIn'}
+          animationOut={'fadeOut'}
+          isVisible={modalVisible}
+          backdropColor={'#3F3F46B2'}
+          onBackdropPress={() => {}}>
+          <View
+            style={{
+              backgroundColor: '#FFF',
+              paddingHorizontal: totalSize(6),
+              paddingVertical: totalSize(4),
+              borderRadius: 20,
+            }}>
+            <Text
+              style={{
+                color: '#3F3F46',
+                fontSize: baseStyle.fontSize(14),
+                fontWeight: '400',
+                textAlign: 'center',
+                lineHeight: baseStyle.fontSize(22.4),
+              }}>
+              Password Reset link sent on email hello@email.com, please check
+              your email to reset the password
+            </Text>
+            <Spacer isBasic />
+            <Spacer isBasic />
+            <Buttons.Colored
+              text="Back to Login"
+              buttonStyle={{marginHorizontal: 0}}
+              onPress={() => {
+                setModalVisible(false);
+                navigation.navigate('SignIn');
+              }}
+            />
+          </View>
+        </Modal>
+      </Wrapper>
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ export const appStyles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: colors.appBgColor1
+    backgroundColor: colors.appBgColor10
   },
   h1: {
     fontSize: fontSize.h1,

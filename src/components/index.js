@@ -25,8 +25,15 @@ import PhotosSwitch from './photosSwitch';
 import PromptsSwitch from './prompstSwitch';
 import CustomModal from './CustomModal';
 import EditableTextInput from './EditableInput';
+import BoostProfile from './BoostProfile';
+import MyFusersList from './myFusersList';
+import Invitations from './Invitations';
+import CirclesWithinCircle from './circles';
+import DeleteCounterModal from './deleteCounterModal.js';
+import Tiles from './tiles';
 
 export {
+  Tiles,
   Wrapper,
   Text,
   Spacer,
@@ -54,4 +61,9 @@ export {
   PromptsSwitch,
   CustomModal,
   EditableTextInput,
+  BoostProfile,
+  MyFusersList,
+  Invitations,
+  CirclesWithinCircle,
+  DeleteCounterModal,
 };

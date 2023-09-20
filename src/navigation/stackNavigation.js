@@ -6,17 +6,20 @@ import {
   Search,
   Chat,
   Spark,
-  CaptainsPage,
-  Settings,
-  ProfileScreen,
-  TeamForFuser,
-  GettingFusedDater,
+  GettingFusedDaterProfileHome,
+  FusingMatchMakerProfileHome,
+  ScrollTab,
+  SwitchProfile,
+  SwitchProfileScroll,
+  SearchDropDown,
 } from '../screens/appFlow';
 import {routes} from '../services';
+import {useSelector} from 'react-redux';
 
 const Stack = createStackNavigator();
 
 const ProfileStackNavigator = () => {
+  const {userType} = useSelector(state => state.userType);
   return (
     <Stack.Navigator
       initialRouteName={ProfileHome}
@@ -25,37 +28,53 @@ const ProfileStackNavigator = () => {
         gestureEnabled: false,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
-      <Stack.Screen name="ProfileHomeStack" component={ProfileHome} />
-      <Stack.Screen name={routes.captainpage} component={CaptainsPage} />
-      <Stack.Screen name={routes.settings} component={Settings} />
-      <Stack.Screen name={routes.profileScreen} component={ProfileScreen} />
-      <Stack.Screen name={routes.teamForFusers} component={TeamForFuser} />
+      {userType == 'FusingMatchMaker' ? (
+        <Stack.Screen
+          name={routes.fusingMatchMakerProfileHome}
+          component={FusingMatchMakerProfileHome}
+        />
+      ) : (
+        <Stack.Screen
+          name={routes.GettingFusedDaterProfileHome}
+          component={GettingFusedDaterProfileHome}
+        />
+      )}
     </Stack.Navigator>
   );
 };
 const ScrollStackNavigator = () => {
+  const {userType} = useSelector(state => state.userType);
   return (
     <Stack.Navigator
-      initialRouteName={Scroll}
+      initialRouteName={'ScrollTab'}
       screenOptions={{
         headerShown: false,
         gestureEnabled: false,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
-      <Stack.Screen name={'ScrollStack'} component={Scroll} />
+      {/* <Stack.Screen name={'ScrollStack'} component={ScrollTab} /> */}
+      {userType == 'FusingMatchMaker' ? (
+        <Stack.Screen name={'ScrollTab'} component={ScrollTab} />
+      ) : (
+        <Stack.Screen
+          name={routes.SwitchProfileScroll}
+          component={SwitchProfileScroll}
+        />
+      )}
     </Stack.Navigator>
   );
 };
 const SearchStackNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={Search}
+      initialRouteName={routes.SearchDropDown}
       screenOptions={{
         headerShown: false,
         gestureEnabled: false,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
-      <Stack.Screen name={'SearchStack'} component={Search} />
+      <Stack.Screen name={routes.SearchDropDown} component={SearchDropDown} />
+      <Stack.Screen name={routes.SearchStack} component={Search} />
     </Stack.Navigator>
   );
 };
@@ -81,7 +100,7 @@ const SparkStackNavigator = () => {
         gestureEnabled: false,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
-      <Stack.Screen name="SparkStack" component={GettingFusedDater} />
+      <Stack.Screen name="SparkStack" component={Spark} />
     </Stack.Navigator>
   );
 };

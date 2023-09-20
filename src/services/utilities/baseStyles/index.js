@@ -40,4 +40,8 @@ export const baseStyle = {
   borderTopRightRadius: value => verticalScale(value),
 
   borderTopLeftRadius: value => verticalScale(value),
+
+  borderBottomRightRadius: value => verticalScale(value),
+
+  borderBottomLeftRadius: value => verticalScale(value),
 };

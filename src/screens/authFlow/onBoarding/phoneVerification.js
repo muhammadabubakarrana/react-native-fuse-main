@@ -31,7 +31,7 @@ const PhoneVerification = props => {
       <CustomStatusBar barStyle={'dark'} backgroundColor={'#F8F9F9'} />
       <Wrapper marginHorizontalBase>
         <ScrollViews.KeyboardAvoiding>
-          <Wrapper marginHorizontalBase >
+          <Wrapper marginHorizontalBase>
             <Text
               style={{
                 fontSize: 30,
@@ -82,7 +82,7 @@ const PhoneVerification = props => {
             <Buttons.Colored
               text="Send Verification Code"
               buttonStyle={{marginHorizontal: 0}}
-              onPress={() => navigation.navigate('CodeVerification', {choice})}
+              onPress={() => console.log('phoneverification')}
             />
           </Wrapper>
         </ScrollViews.KeyboardAvoiding>

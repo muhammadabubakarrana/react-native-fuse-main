@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {Buttons, Wrapper, Spacer, Text} from '../../../components';
-import {Image, View} from 'react-native';
+import {Dimensions, Image, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {colors, baseStyle} from '../../../services';
@@ -11,75 +11,53 @@ const ProfileCompleted = props => {
   const {profileImage} = props.route.params;
 
   return (
-    <Wrapper isMain style={{flex: 1, backgroundColor: colors.appColor1}}>
+    <Wrapper isMain style={{flex: 1, backgroundColor: colors.appTextColor11}}>
       <CustomStatusBar barStyle={'dark'} backgroundColor={'#f8f9f9'} />
+
       <View style={{position: 'relative', alignItems: 'center'}}>
         <Image
           style={{
-            height: baseStyle.height(260),
+            height: Dimensions.get('window').height / 1.7,
             width: '100%',
             resizeMode: 'cover',
           }}
-          source={require('../../../assets/images/main/ellipse.png')}
+          source={
+            profileImage === null
+              ? require('../../../assets/images/main/profileBg.png')
+              : {uri: profileImage}
+          }
         />
-        <View style={{position: 'absolute', bottom: -60}}>
-          <View
-            style={{
-              height: baseStyle.height(180),
-              width: baseStyle.width(180),
-              borderRadius: 100,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#f8f9f9',
-            }}>
-            <Image
-              source={
-                profileImage === null
-                  ? require('../../../assets/images/main/user-1.png')
-                  : {uri: profileImage}
-              }
-              style={{
-                height: baseStyle.height(150),
-                width: baseStyle.height(150),
-                borderRadius: 100,
-                resizeMode: 'cover',
-              }}
-            />
-          </View>
-        </View>
-      </View>
-      <Wrapper marginHorizontalLarge marginVerticalLarge>
-        <Wrapper marginHorizontalBase marginVerticalLarge>
-          <Spacer isBasic />
+        <Wrapper style={{position: 'absolute', top: 20}}>
           <Text
+            isWhite
             style={{
               fontSize: baseStyle.fontSize(42),
-              fontWeight: '900',
-              color: '#FFFFFF',
-              textAlign: 'left',
+              fontWeight: 900,
+              opacity: 0.7,
             }}>
-            James
-          </Text>
-          <Spacer isBasic />
-          <Text
-            style={{
-              fontSize: baseStyle.fontSize(42),
-              fontWeight: '900',
-              color: '#FFFFFF',
-              textAlign: 'left',
-            }}>
-            You are ready to be fused!
+            Michael
           </Text>
         </Wrapper>
+      </View>
+      <Wrapper marginHorizontalLarge marginVerticalLarge>
+        <Text
+          style={{
+            fontSize: baseStyle.fontSize(42),
+            fontWeight: '900',
+            color: '#FFFFFF',
+            textAlign: 'left',
+          }}>
+          You are ready to be fused!
+        </Text>
       </Wrapper>
       <Wrapper
         marginHorizontalLarge
         style={{position: 'absolute', bottom: totalSize(3), left: 0, right: 0}}>
         <Buttons.Colored
           text="Get Started"
-          textStyle={{color: '#383838'}}
+          textStyle={{color: colors.snow}}
           onPress={() => navigation.navigate('BottomTab')}
-          buttonStyle={{marginHorizontal: 0, backgroundColor: '#FFFFFF'}}
+          buttonStyle={{marginHorizontal: 0, backgroundColor: '#CA2D30'}}
         />
       </Wrapper>
     </Wrapper>
