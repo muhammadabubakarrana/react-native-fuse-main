@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     paddingTop: Platform.OS === 'ios' ? 30 : 0,
     borderRadius: 24,
-    shadowColor: '#ccc',
+    shadowColor: colors.appTextColor11,
     shadowOffset: {
       width: 0,
       height: 9,

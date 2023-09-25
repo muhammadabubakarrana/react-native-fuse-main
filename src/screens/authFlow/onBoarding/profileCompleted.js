@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
-import {Buttons, Wrapper, Spacer, Text} from '../../../components';
-import {Dimensions, Image, View} from 'react-native';
+import {Buttons, Wrapper, Spacer, Text, StatusBars} from '../../../components';
+import {Dimensions, Image, ImageBackground, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
 import {colors, baseStyle} from '../../../services';
@@ -12,9 +12,33 @@ const ProfileCompleted = props => {
 
   return (
     <Wrapper isMain style={{flex: 1, backgroundColor: colors.appTextColor11}}>
-      <CustomStatusBar barStyle={'dark'} backgroundColor={'#f8f9f9'} />
-
-      <View style={{position: 'relative', alignItems: 'center'}}>
+      {/* <CustomStatusBar barStyle={'dark'} backgroundColor={'#f8f9f9'} /> */}
+      <StatusBars.Light />
+      {/* Bg Image */}
+      <ImageBackground
+        source={
+          profileImage === null
+            ? require('../../../assets/images/main/profileBg.png')
+            : {uri: profileImage}
+        }
+        resizeMode="stretch"
+        style={{
+          height: Dimensions.get('window').height /1.5,
+          width: Dimensions.get('window').width,
+          paddingTop: baseStyle.paddingTop(42),
+        }}>
+        <Text
+          alignTextCenter
+          isWhite
+          style={{
+            fontSize: baseStyle.fontSize(42),
+            fontWeight: 900,
+            opacity: 0.7,
+          }}>
+          Michael
+        </Text>
+      </ImageBackground>
+      {/* <View style={{position: 'relative', alignItems: 'center'}}>
         <Image
           style={{
             height: Dimensions.get('window').height / 1.7,
@@ -38,7 +62,8 @@ const ProfileCompleted = props => {
             Michael
           </Text>
         </Wrapper>
-      </View>
+      </View> */}
+
       <Wrapper marginHorizontalLarge marginVerticalLarge>
         <Text
           style={{

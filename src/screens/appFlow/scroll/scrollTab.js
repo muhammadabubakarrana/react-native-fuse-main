@@ -56,7 +56,6 @@ const ScrollTab = () => {
         barStyle={'light'}
         backgroundColor={colors.appBgColor11}
       />
-      <StatusBars.Dark />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Image */}
         <View>
@@ -197,7 +196,7 @@ const ScrollTab = () => {
             </Text>
           </Wrapper>
           <TouchableOpacity onPress={() => navigate(routes.ChoseWhoFuse)}>
-            <SvgIcons.DotIconHorizontal width="21" height="5" />
+            <SvgIcons.DotIconHorizontal width="21" height="25" />
           </TouchableOpacity>
         </Wrapper>
         <Spacer isDoubleBase />

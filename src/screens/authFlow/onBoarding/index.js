@@ -65,7 +65,7 @@ const OnBoarding = props => {
   return (
     <Wrapper isMain style={{flex: 1, backgroundColor: colors.appTextColor11}}>
       <CustomStatusBar
-        barStyle={'dark'}
+        barStyle={'light'}
         backgroundColor={colors.appTextColor11}
       />
       <Spacer isDoubleBase />

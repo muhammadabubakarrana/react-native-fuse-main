@@ -6,7 +6,7 @@ import 'react-native-gesture-handler';
 import {navigationRef} from './src/navigation/rootNavigation';
 import {Provider} from 'react-redux';
 import {store} from './src/services/redux/store';
-import {SearchDropDown} from './src/screens/appFlow';
+import {Scroll, SearchDropDown} from './src/screens/appFlow';
 
 LogBox.ignoreAllLogs();
 LogBox.ignoreLogs([
@@ -20,6 +20,7 @@ const App = () => {
         <MainNavigation />
       </NavigationContainer>
     </Provider>
+    // <Scroll />
     // <SearchDropDown />
   );
 };

@@ -19,7 +19,7 @@ import {
   Invitations,
 } from '../../../components';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
-import {height, totalSize} from 'react-native-dimension';
+import {height, totalSize, width} from 'react-native-dimension';
 import {useNavigation} from '@react-navigation/native';
 import {baseStyle, colors, routes, sizes} from '../../../services';
 import {SvgIcons} from '../../../services/constants/svg';
@@ -65,7 +65,10 @@ function FusingMatchMakerProfileHome() {
       isMain
       paddingHorizontalBase
       style={{backgroundColor: colors.appBgColor11}}>
-      <CustomStatusBar barStyle={'light'} backgroundColor={colors.appBgColor11} />
+      <CustomStatusBar
+        barStyle={'light'}
+        backgroundColor={colors.appBgColor11}
+      />
 
       <Spacer isBasic />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -75,16 +78,13 @@ function FusingMatchMakerProfileHome() {
           flexDirectionRow
           alignItemsCenter
           justifyContentSpaceBetween
-          paddingHorizontalBase
+          paddingHorizontalSmall
           paddingVerticalBase
           style={{
             backgroundColor: colors.appBgColor12,
             borderRadius: 24,
           }}>
-          <SvgIcons.DualHeartIcon
-            width={baseStyle.width(62)}
-            height={baseStyle.height(39)}
-          />
+          <SvgIcons.DualHeartIcon width={width(15)} height={height(5)} />
           <Wrapper>
             <Text
               style={{
@@ -107,13 +107,13 @@ function FusingMatchMakerProfileHome() {
             onPress={() => navigate(routes.settings)}
             style={{
               backgroundColor: colors.appBgColor11,
-              padding: 12,
+              padding: totalSize(1),
               borderRadius: 100,
             }}>
             <Icon
               type="material-community"
               name="cog-outline"
-              color={"#B5C6C4"}
+              color={'#B5C6C4'}
               size={totalSize(3.5)}
             />
           </TouchableOpacity>
@@ -178,7 +178,7 @@ function FusingMatchMakerProfileHome() {
         </Wrapper>
         {/* conditional rendering*/}
         {!notificationEnable ? (
-          <>
+          <Wrapper marginVerticalSmall>
             <Text
               style={{
                 fontSize: baseStyle.fontSize(42),
@@ -187,17 +187,18 @@ function FusingMatchMakerProfileHome() {
               }}>
               You are{`\n`}Fusing for
             </Text>
-          </>
+          </Wrapper>
         ) : (
-          <Text
-            style={{
-              fontSize: baseStyle.fontSize(42),
-              fontWeight: 900,
-              color: colors.snow,
-              marginBottom: baseStyle.marginBottom(15),
-            }}>
-            You are Invited to Fuse For
-          </Text>
+          <Wrapper marginVerticalSmall>
+            <Text
+              style={{
+                fontSize: baseStyle.fontSize(42),
+                fontWeight: 900,
+                color: colors.snow,
+              }}>
+              You are invited to fuse for
+            </Text>
+          </Wrapper>
         )}
         <Spacer isBasic />
         {/* Diamond */}

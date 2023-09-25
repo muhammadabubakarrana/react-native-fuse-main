@@ -18,7 +18,7 @@ import {
   Modals,
 } from '../../../components';
 import CustomStatusBar from '../../../components/statusBars/customStatusBar';
-import {width, totalSize} from 'react-native-dimension';
+import {width, totalSize, height} from 'react-native-dimension';
 import {useNavigation} from '@react-navigation/native';
 import {baseStyle, colors, routes, sizes} from '../../../services';
 import {SvgIcons} from '../../../services/constants/svg';
@@ -81,10 +81,7 @@ function GettingFusedDaterProfileHome() {
             backgroundColor: colors.appBgColor12,
             borderRadius: 24,
           }}>
-          <SvgIcons.DualHeartIcon
-            width={baseStyle.width(62)}
-            height={baseStyle.height(39)}
-          />
+          <SvgIcons.DualHeartIcon width={width(15)} height={height(5)} />
           <Wrapper>
             <Text
               style={{
@@ -107,7 +104,7 @@ function GettingFusedDaterProfileHome() {
             onPress={() => navigate(routes.settings)}
             style={{
               backgroundColor: colors.appBgColor11,
-              padding: 12,
+              padding: totalSize(1),
               borderRadius: 100,
             }}>
             <Icon
@@ -180,7 +177,7 @@ function GettingFusedDaterProfileHome() {
         {!notificationEnable ? (
           <>
             {/* fuser number */}
-            <Wrapper marginVerticalBase>
+            <Wrapper>
               <TextInputs.Bordered
                 containerStyle={styles.input}
                 iconStyleRight={{
@@ -227,6 +224,7 @@ const styles = StyleSheet.create({
     marginHorizontal: totalSize(0.5),
     paddingVertical: baseStyle.paddingVertical(2),
     borderColor: '#4A5458',
+    marginBottom: totalSize(3),
   },
 });
 

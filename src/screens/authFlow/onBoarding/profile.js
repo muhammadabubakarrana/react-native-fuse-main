@@ -230,14 +230,15 @@ const Profile = () => {
           isMain
           style={{flex: 1, backgroundColor: colors.appTextColor11}}>
           <CustomStatusBar
-            barStyle={'dark'}
+            barStyle={'light'}
             backgroundColor={colors.appTextColor11}
           />
           <Spacer isBasic />
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : null}>
             <ScrollView
-              contentContainerStyle={{height: Dimensions.get('window').height}}>
+              contentContainerStyle={{height: Dimensions.get('window').height-10}}
+              >
               {/* <View
                 style={{
                   flexDirection: 'row',
@@ -2118,8 +2119,8 @@ const Profile = () => {
                   style={{
                     flexDirection: 'row',
                     //marginBottom: totalSize(3),
-                    position: 'absolute',
-                    bottom: totalSize(5),
+                    // position: 'absolute',
+                    // bottom: totalSize(7),
                     // justifyContent: "space-between"
                   }}>
                   {currentIndex !== 0 && (

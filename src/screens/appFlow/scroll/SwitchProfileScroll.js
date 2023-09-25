@@ -27,19 +27,19 @@ export default function SwitchProfileScroll() {
         backgroundColor={colors.appTextColor11}
       />
       <ScrollView
-        //  contentContainerStyle={{flex: 1}}
+        contentContainerStyle={{flex: 1}}
         indicatorStyle={colors.snow}
         showsVerticalScrollIndicator={true}>
         <Wrapper marginVerticalSmall paddingHorizontalMedium>
           {/* Back */}
           <TouchableOpacity
             style={{
-              marginTop: baseStyle.marginTop(10),
+              //   marginTop: baseStyle.marginTop(10),
               backgroundColor: colors.snow,
               borderRadius: 100,
               alignItems: 'center',
-              width: 45,
-              height: 45,
+              width: baseStyle.height(45),
+              height: baseStyle.height(45),
               justifyContent: 'center',
             }}
             onPress={goBack}>
@@ -53,14 +53,13 @@ export default function SwitchProfileScroll() {
         <Wrapper
           paddingHorizontalMedium
           flex={1}
-          // style={{flexDirection: 'column', justifyContent: 'space-evenly'}}
-        >
+          style={{flexDirection: 'column', justifyContent: 'space-evenly', marginBottom: 90}}>
           {/* Texts */}
           <Text style={styles.delText}>You are{`\n`}currently</Text>
 
           {/* Card */}
           <Wrapper
-            marginVerticalBase
+            // marginVerticalBase
             flexDirectionRow
             alignItemsCenter
             paddingHorizontalBase
@@ -123,7 +122,7 @@ export default function SwitchProfileScroll() {
 
           {/* Card */}
           <Wrapper
-            marginVerticalSmall
+            // marginVerticalSmall
             flexDirectionRow
             alignItemsCenter
             paddingHorizontalBase
@@ -198,11 +197,14 @@ export default function SwitchProfileScroll() {
               text={'Switch Profile'}
             />
           </Wrapper>
-          <Spacer isDoubleBase />
-          <Spacer isDoubleBase />
-          <Spacer isDoubleBase />
+          {/* <Spacer isDoubleBase />
+      <Spacer isDoubleBase /> */}
         </Wrapper>
       </ScrollView>
+      {/* <Spacer isDoubleBase />
+      <Spacer isDoubleBase /> */}
+
+
     </Wrapper>
   );
 }
@@ -210,6 +212,7 @@ export default function SwitchProfileScroll() {
 const styles = StyleSheet.create({
   delText: {
     fontSize: baseStyle.fontSize(38),
+    lineHeight: baseStyle.lineHight(42),
     fontWeight: 800,
     color: colors.snow,
   },
